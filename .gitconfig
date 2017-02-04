@@ -1,0 +1,46 @@
+[user]
+	email = rchid.anas@gmail.com
+	name = Anas Rchid
+[alias]
+    a = add
+    ap = add -p
+    ac = !git add . && git commit -a -m
+    c = commit --verbose
+    ca = commit -a --verbose
+    cm = commit -m
+    cam = commit -a -m
+    m = commit --amend --verbose
+ 
+    d = diff
+    ds = diff --stat -r
+    dch = diff --name-status -r
+    dca = diff --cached
+ 
+    s = status -s
+    co = checkout
+    cob = checkout -b
+ 
+    # Use with caution
+    undo = reset --hard
+ 
+    # push all
+    pushitgood = !echo -e 'Ah, push it..\n' && git push -u origin --all && echo -e '\n P-push it real good...'
+ 
+    # delete merged branch
+    cleanmerged = !git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d
+ 
+    ## Logs ##
+    ##########
+    # one-line log
+    l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    tree = log --oneline --decorate --graph
+ 
+    new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
+    whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+    whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+ 
+    # list branches sorted by last modified
+    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+    # list aliases
+    la = "!git config -l | grep alias | cut -c 7-"
