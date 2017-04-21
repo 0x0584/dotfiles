@@ -7,7 +7,6 @@ fi
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
-
 RED='\033[0;31m'
 ORANGE='\033[0;33m'
 YELLOW='\033[1;33m'
@@ -41,13 +40,9 @@ echo -e "                  @!!~               modem                 ~!MN"
 echo -e "                .S!!~                                     ~~!M&>"
 echo -e "               :@SMHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!H>$N"
 echo ""
-export PATH=$PATH:/opt/gitkraken
-
 # User specific aliases and functions
+PATH="$PATH:$HOME/bin/usr/bin"
+export RSENSE_HOME=/opt/rsense-0.3/
 
-#PS1="(\j) \@ % "
-
-if [ $(id -u) -eq 0 ]; 
-then
-	$SHELL="/usr/bin/bash"
-fi	
+alias temacs="emacsclient -t"
+alias cemacs="emacsclient -c"

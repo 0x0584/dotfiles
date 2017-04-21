@@ -1,10 +1,17 @@
-[user]
-	email = rchid.anas@gmail.com
+[git]
 	name = Anas Rchid
+	email = rchid.anas@gmail.com
+[user]
+	name = Anas Rchid
+    	email = rchid.anas@gmail.com
+## My git aliases
+
 [alias]
     a = add
     ap = add -p
     ac = !git add . && git commit -a -m
+    acu = !git add -u && git commit -a -m
+    
     c = commit --verbose
     ca = commit -a --verbose
     cm = commit -m
@@ -19,12 +26,14 @@
     s = status -s
     co = checkout
     cob = checkout -b
- 
+
+    # Clone
+    cl = clone
     # Use with caution
     undo = reset --hard
  
     # push all
-    pushitgood = !echo -e 'Ah, push it..\n' && git push -u origin --all && echo -e '\n P-push it real good...'
+    pushitgood = !echo -e 'Ah, push it..\n' && git push -u origin --all && echo -e '\nP-push it real good'
  
     # delete merged branch
     cleanmerged = !git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d
@@ -32,15 +41,37 @@
     ## Logs ##
     ##########
     # one-line log
-    l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
-    hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    l = log --pretty=format:"%C(red)%h\\ %ad%C(yellow)%d\\ %Creset%s" --decorate --date=short 
+
+    ll = log --pretty=format:"%C(red)%h\\ %ad%Cyellow%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+
+    hist = log --graph --pretty=format:'%Cred%h%Creset\t - %s %C(yellow)%d%Creset' --abbrev-commit --date=relative
+
+    histt = log --graph --pretty=format:'%Cred%h%Creset\t - %s %Cgreen(%cr) %C(yellow)%d%Creset' --abbrev-commit --date=relative
+
+    hista = log --graph --pretty=format:'%Cred%h%Creset\t - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset' --abbrev-commit --date=relative
+
     tree = log --oneline --decorate --graph
- 
+
+    fine = log --decorate --pretty=format:'(%C(yellow)%h %Creset -> %C(blue) %p%Creset) %Cgreen%cr%Creset %n  %C(white)\"%s\"%Creset%n' --graph --topo-order
+
     new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
+
     whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
     whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
  
     # list branches sorted by last modified
-    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+    bb = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"
+[cola]
+	tabwidth = 4
+	linebreak = false
+	boldheaders = true
+[gui]
+	editor = emacsclient -c
+[diff]
+	tool = meld
+[merge]
+	tool = meld
