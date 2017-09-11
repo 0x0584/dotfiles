@@ -1,0 +1,5 @@
+xterm*background:   	black
+xterm*foreground:   	gray
+xterm*geometry:	  	79x24
+xterm*savelines: 	16384
+xterm*loginshell: 	true
