@@ -26,7 +26,7 @@ echo -e "                               XR!~          ~!Sk:"
 echo -e "                              tR!~        ::~~!!${RED}MMXXHHHH!!<:.${NC}"
 echo -e "                             <S!xxiXX!!!~~~~~~~!!${RED}MMMMMMMMMMMMMMMXXXXx::${NC}"
 echo -e "                        .:X@NSSSRMMX!!!!~~~~~~~~!!${ORANGE}MMMM@@MMMMMMMMMMMMXMSMMtHHHX!${NC}"
-echo -e "                  :xiM# ~  <S!~   ~~~!~~~~~~~~~~~!!${YELLOW}MX!!!!!??#RR888MMMMMMMMMMMHH${NC}"
+echo -e "                  :xiM# ~  <S!~   ~~~!~~~~~~~~~~~!!${ORANGE}MX!!!!!??#RR888MMMMMMMMMMMHH${NC}"
 echo -e "           ..XH@!~        XS!~                  ~~~!${GREEN}MX!!!!!!!!!!!!?MMR@@SMMMMMM${NC}"
 echo -e "     :xiM# ~             <S!~                      ~!${GREEN}MM??MMX!!!!!!!!!!!!!!??#RS${NC}"
 echo -e "XH@M!                   :S!!                        ~!R:   ${BLUE} ~!MM!XH!!!!!!!!!!!!${NC}"
@@ -43,6 +43,16 @@ echo ""
 # User specific aliases and functions
 PATH="$PATH:$HOME/bin/usr/bin"
 export RSENSE_HOME=/opt/rsense-0.3/
+export PATH=${PATH}:~/android-sdks/tools
+export PATH=${PATH}:~/android-sdks/platform-tools
 
+alias memclean="su -c 'bleachbit -c --preset'"
 alias temacs="emacsclient -t"
 alias cemacs="emacsclient -c"
+alias ld="ls -d */"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
