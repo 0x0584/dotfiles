@@ -116,7 +116,7 @@ bash_prompt() {
     local PROMP="$"
     [ $UID -eq "0" ] && UC=$R   # root's color
     [ $UID -eq "0" ] && PROMP="#"
-    PS1="${TITLEBAR}${EMK}[${UC}\u${EMK}@${UC}\h ${EMB}\${NEW_PWD}${EMK}]\n(jobs:\j \#) ${UC}${PROMP} ${NONE}"
+    PS1="${TITLEBAR}${BGR}\T${UC} :: ${EMK}${UC}\u${EMK}@${UC}\h :: (\j \#)\n[ ${EMB}\${NEW_PWD} ${UC}]${UC} ${PROMP}${NONE} "
     # without colors: PS1="[\u@\h \${NEW_PWD}]\\$ "
     # extra backslash in front of \$ to make bash colorize the prompt
 }
