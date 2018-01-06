@@ -1,12 +1,10 @@
-# .bashrc
-
-# Source global definitions
+## .bashrc
+#
+## Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
-
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+#
 RED='\033[0;31m'
 ORANGE='\033[0;33m'
 YELLOW='\033[1;33m'
@@ -14,7 +12,7 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 VIOLET='\033[0;35m'
 NC='\033[0m' # No Color
-
+#
 echo -e "                                       S&"
 echo -e "                                      @RSk"
 echo -e "                                     S!!!M&"
@@ -41,19 +39,32 @@ echo -e "                  @!!~               modem                 ~!MN"
 echo -e "                .S!!~                                     ~~!M&>"
 echo -e "               :@SMHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!H>$N"
 
-# User specific aliases and functions
+## User specific aliases and functions
 PATH="$PATH:$HOME/bin/usr/bin"
 export RSENSE_HOME=/opt/rsense-0.3/
 export PATH=${PATH}:~/android-sdks/tools
 export PATH=${PATH}:~/android-sdks/platform-tools
 XTERM=xterm-256color
 
-alias memclean="su -c 'bleachbit -c --preset'"
-alias temacs="emacsclient -t"
-alias cemacs="emacsclient -c"
+# Aliases
+alias memclean="su -c 'bleachbit -c --preset' && exit"
+alias tem="emacsclient -t"
+alias cem="emacsclient -c"
 alias ld="ls -d */"
+alias retval="echo -e '\nthe return value was:\t$?'"
+alias wget-mirror='wget -mcpkEq --show-progress'
+alias sysctl='systemctl'
+alias mariadb='mysql'
+EW='~/workspace/'
+JTST='~/Workspace/jtest/'
+mkcdir () {
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
+}
+export EDITOR='emacsclient -t'
+export VISUAL='emacsclient -c'
 
-# ref: https://bash.cyberciti.biz/guide/Changing_bash_prompt
+## ref: https://bash.cyberciti.biz/guide/Changing_bash_prompt
 bash_prompt_command() {
     # How many characters of the $PWD should be kept
     local pwdmaxlen=25
@@ -113,14 +124,18 @@ bash_prompt() {
     local BGW="\[\033[47m\]"
     
     local UC=$W                 # user's color
-    local PROMP="$"
+    local PROMP="%"
+
     [ $UID -eq "0" ] && UC=$R   # root's color
     [ $UID -eq "0" ] && PROMP="#"
-    PS1="${TITLEBAR}${BGR}\T${UC} :: ${EMK}${UC}\u${EMK}@${UC}\h :: (\j \#)\n[ ${EMB}\${NEW_PWD} ${UC}]${UC} ${PROMP}${NONE} "
+
+    PS1="${TITLEBAR}${BGR}\T${UC} ${EMG}:: ${EMK}${UC}\u${EMK}@${UC}\h ${EMG}::${NONE} (\j \#)\n[ ${EMB}\${NEW_PWD} ${UC}]${UC} ${PROMP}${NONE} "
     # without colors: PS1="[\u@\h \${NEW_PWD}]\\$ "
     # extra backslash in front of \$ to make bash colorize the prompt
 }
-# init it by setting PROMPT_COMMAND
+
+## init it by setting PROMPT_COMMAND
 PROMPT_COMMAND=bash_prompt_command
 bash_prompt
 unset bash_prompt
+# source ~/.bash-powerline.sh
