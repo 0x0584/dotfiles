@@ -3,7 +3,7 @@
 	email = rchid.anas@gmail.com
 [user]
 	name = Anas Rchid
-    	email = rchid.anas@gmail.com
+	email = rchid.anas@gmail.com
 ## My git aliases
 
 [alias]
@@ -33,7 +33,7 @@
     undo = reset --hard
  
     # push all
-    pushitgood = !echo -e 'Ah, push it..\n' && git push -u origin --all && echo -e '\nP-push it real good'
+    pushitgood = !echo 'Ah, push it..\n' && git push -u origin --all && echo '\nP-push it real good'
  
     # delete merged branch
     cleanmerged = !git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d
@@ -43,7 +43,7 @@
     # one-line log
     l = log --pretty=format:"%C(red)%h\\ %ad%C(yellow)%d\\ %Creset%s" --decorate --date=short 
 
-    ll = log --pretty=format:"%C(red)%h\\ %ad%Cyellow%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    ll = log --pretty=format:"%C(red)%h\\ %ad%C(yellow)%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
 
     hist = log --graph --pretty=format:'%Cred%h%Creset\t - %s %C(yellow)%d%Creset' --abbrev-commit --date=relative
 
@@ -51,11 +51,11 @@
 
     hista = log --graph --pretty=format:'%Cred%h%Creset\t - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset' --abbrev-commit --date=relative
 
-    tree = log --oneline --decorate --graph
+    tree = log --oneline --decorate --graph --stat --summary
 
     fine = log --decorate --pretty=format:'(%C(yellow)%h %Creset -> %C(blue) %p%Creset) %Cgreen%cr%Creset %n  %C(white)\"%s\"%Creset%n' --graph --topo-order
 
-    new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
+    last = !sh -c 'git log $1@{1}..$1@{0} "$@"'
 
     whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
     whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
@@ -66,13 +66,17 @@
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"
     deleted = log --diff-filter=D --summary
+
 [cola]
 	tabwidth = 4
 	linebreak = false
 	boldheaders = true
+	spellcheck = false
 [gui]
 	editor = emacsclient -c
 [diff]
 	tool = meld
 [merge]
 	tool = meld
+[github]
+	user = Anas Rchid
