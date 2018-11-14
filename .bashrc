@@ -45,7 +45,7 @@ if [ ! -e "$HOME/.sudo_as_admin_successful" ] && [ ! -e "$HOME/.hushlogin" ] ; t
 				  cat <<-EOF
 	To run a command as administrator (user "root"), use "sudo <command>".
 	See "man sudo_root" for details.
-	
+
 	EOF
 			      fi
     esac
@@ -80,26 +80,6 @@ fi
 #     }
 # fi
 
-# Aliases
-alias memclean="sudo bleachbit -c --preset"
-alias tem="emacsclient -t"
-alias cem="emacsclient -c"
-alias ld="ls -d */"
-alias retval="echo -e '\nthe return value was:\t$?'"
-alias wget-mirror='wget -mcpkEq --show-progress'
-alias sysctl='systemctl'
-alias mariadb='mysql'
-alias valg='valgrind --leak-check=full --show-leak-kinds=all --show-reachable=yes'
-alias valk='valkyrie'
-EW='~/workspace/'
-JTST='~/Workspace/jtest/'
-mkcdir () {
-    mkdir -p -- "$1" &&
-      cd -P -- "$1"
-}
-export EDITOR='emacsclient -t'
-export VISUAL='emacsclient -c'
-
 ## ref: https://bash.cyberciti.biz/guide/Changing_bash_prompt
 bash_prompt_command() {
     # How many characters of the $PWD should be kept
@@ -128,7 +108,7 @@ bash_prompt() {
           ;;
     esac
     local NONE="\[\033[0m\]"    # unsets color to term's fg color
-    
+
     # regular colors
     local K="\[\033[0;30m\]"    # black
     local R="\[\033[0;31m\]"    # red
@@ -138,7 +118,7 @@ bash_prompt() {
     local M="\[\033[0;35m\]"    # magenta
     local C="\[\033[0;36m\]"    # cyan
     local W="\[\033[0;37m\]"    # white
-    
+
     # emphasized (bolded) colors
     local EMK="\[\033[1;30m\]"
     local EMR="\[\033[1;31m\]"
@@ -148,7 +128,7 @@ bash_prompt() {
     local EMM="\[\033[1;35m\]"
     local EMC="\[\033[1;36m\]"
     local EMW="\[\033[1;37m\]"
-    
+
     # background colors
     local BGK="\[\033[40m\]"
     local BGR="\[\033[41m\]"
@@ -158,7 +138,7 @@ bash_prompt() {
     local BGM="\[\033[45m\]"
     local BGC="\[\033[46m\]"
     local BGW="\[\033[47m\]"
-    
+
     local UC=$W                 # user's color
     local PROMP="%"
 
@@ -173,7 +153,31 @@ bash_prompt() {
 ## init it by setting PROMPT_COMMAND
 PROMPT_COMMAND=bash_prompt_command
 bash_prompt
+
 alias ag='apt-get install -y'
 alias vimcat="$HOME/.bin/vimcat"
 alias vcat="$HOME/.bin/vimcat"
 alias vc="vcat"
+
+# Aliases
+alias memclean="sudo bleachbit -c --preset"
+alias ggdb="gdb -x gdb.cfg"
+alias tem="emacsclient -t"
+alias cem="emacsclient -c"
+alias ld="ls -d */"
+alias retval="echo -e '\nthe return value was:\t$?'"
+alias wmget='wget -mcpkEq --show-progress'
+alias sysctl='systemctl'
+alias mariadb='mysql'
+alias valg='valgrind --leak-check=full --show-leak-kinds=all --show-reachable=yes'
+alias valk='valkyrie'
+
+mkcdir () {
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
+}
+
+export EDITOR='emacsclient -t'
+export VISUAL='emacsclient -c'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
