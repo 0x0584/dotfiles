@@ -11,7 +11,7 @@
 ;;
 ;;   Emacs Configuration
 ;;
-;; Summary:
+;;; Summary:
 ;;
 ;;   Describe loaded files.
 ;;   Describe loaded modes.
@@ -23,13 +23,13 @@
 ;;
 ;;   - You would need to configure your Emacs all over someday.
 ;;
-;;  User options defined here:
+;;; User options defined here:
 ;;
-;;  Commands defined here:
+;;; Commands defined here:
 ;;
-;;  interactive functions defined here:
+;;; Interactive functions defined here:
 ;;
-;;  Non-interactive functions defined here:
+;;; Non-interactive functions defined here:
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -53,7 +53,13 @@
 ;;; Code:
 
 ;; Load packages
-(package-initialize t)
+(require 'package)
+
+(package-initialize)
+
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+	("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;; Load sensitive data coniguration
 (load-file ".secrets.el")
