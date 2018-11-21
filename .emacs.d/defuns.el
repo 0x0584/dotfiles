@@ -18,11 +18,19 @@
 ;;; Interactive functions defined here:
 ;;     `create-tags', `next-code-buffer', `named-term',
 ;;     `named-term-below', `move-line', `move-line-up',
-;;     `move-line-down', `kill-other-buffers', `find-overlays-specifying', `emacs-quit-confirm', `de/highlight-line', `delete-nl-spaces', `delete-nl-spaces-find-file-hook', `code-buffer', `browse-file-directory', `save-buffer-if-modified', `safe-revert-buffer', `switch-window-orientation', `split-current-window', `select-line', `swap-buffer', `xah-syntax-color-hex', `remove-highlight', previous-code-buffer
+;;     `move-line-down', `kill-other-buffers',
+;;     `find-overlays-specifying', `emacs-quit-confirm',
+;;     `de/highlight-line', `delete-nl-spaces',
+;;     `delete-nl-spaces-find-file-hook', `code-buffer',
+;;     `browse-file-directory', `save-buffer-if-modified',
+;;     `safe-revert-buffer', `switch-window-orientation',
+;;     `split-current-window', `select-line', `swap-buffer',
+;;     `xah-syntax-color-hex', `remove-highlight',
+;;     `previous-code-buffer'
 ;;
 ;;; Non-interactive functions defined here:
 ;;
-;;     `insert-time`, `insert-date`
+;;     `insert-time', `insert-date'
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -122,9 +130,11 @@ If some buffer are modified, ask to save them."
   "Move the current line up or down by N lines."
   (interactive "p")
   (let ((col (current-column)) (start '()) (end '()))
-    (beginning-of-line) (setq start (point))
-    (end-of-line) (setq end (point))
-    (forward-char)
+    (beginning-of-line)
+    (setq start (point))
+    (end-of-line)
+    (forward-char)			; get the '\n' too
+    (setq end (point))
     (let ((line-text (delete-and-extract-region start end)))
       (forward-line n)
       (insert line-text)
@@ -132,15 +142,15 @@ If some buffer are modified, ask to save them."
       (forward-line -1)
       (forward-char col))))
 
-(defun move-line-up (n)
+(defun move-line-up (&optional n)
   "Move the current line up by N lines."
   (interactive "p")
-  (move-line (if (null n) -1 (- n))))
+  (move-line (or n -1)))
 
-(defun move-line-down (n)
+(defun move-line-down (&optional n)
   "Move the current line down by N lines."
   (interactive "p")
-  (move-line (if (null n) 1 n)))
+  (move-line (or n 1)))
 
 (defun indent-c-buffer ()
   "Call `indent' on the whole current buffer.
