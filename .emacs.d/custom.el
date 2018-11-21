@@ -82,6 +82,9 @@
  '(linum-format (quote dynamic))
  '(magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256")))
  '(menu-bar-mode nil)
+ '(package-selected-packages
+   (quote
+    (zweilight-theme zenburn-theme zeal-at-point yascroll yari xkcd wordnut which-key websocket web-mode web-beautify volatile-highlights vmd-mode vline vkill visual-regexp undo-tree twittering-mode tuareg tldr term+ telephone-line tao-theme tangotango-theme tango-plus-theme tango-2-theme symon sx swiper swap-buffers svg-clock super-save ssh sr-speedbar spaces spacemacs-theme sotlisp smex smartparens smart-mode-line-powerline-theme showkey show-css rvm runtests ruby-tools ruby-refactor ruby-hash-syntax ruby-factory ruby-electric ruby-dev ruby-compilation ruby-block rubocop rsense rotate robe restart-emacs rainbow-delimiters rainbow-blocks quickrun quack popwin popup-switcher popup-kill-ring popup-complete plsql plsense plantuml-mode php-eldoc php+-mode persp-mode perl6-mode pandoc-mode pandoc pacmacs ox-pandoc orgtbl-ascii-plot org-webpage org-web-tools org-ref org-readme org-preview-html org-pandoc org-page org-gnome-calendar org-gnome org-download org-doing org-commentary org-beautify-theme org-alert omniref nyan-mode nlinum nimbus-theme nhexl-mode neotree nasm-mode names mysql-to-org mu4e-maildirs-extension minor-mode-hack memory-usage melancholy-theme meacupla-theme markdown-mode+ map-regexp magithub magit-todos magit-rockstar magit-org-todos magit-find-file magit-filenotify magit-annex magic-latex-buffer linum-relative latexdiff latex-preview-pane langtool lang-refactor-perl julia-shell julia-repl js2-refactor ivy-youtube inkpot-theme impatient-mode iedit howm hlinum hl-sexp highlight-quoted highlight-operators highlight-escape-sequences highlight-blocks highlight hide-comnt hexrgb helm-themes helm-spotify-plus helm-rubygems-org helm-rubygems-local helm-robe helm-perldoc helm-make helm-gtags helm-gitignore helm-git-grep helm-git-files helm-git helm-flymake helm-dictionary helm-dash helm-css-scss helm-company grandshell-theme gotham-theme god-mode gnuplot gnu-apl-mode gitlab gited git-timemachine ggtags geben fzf fuzzy function-args font-lock+ flymake-ruby flymake-less flymake-json flymake-jslint flymake-jshint flymake-css flylisp flycheck-perl6 flycheck-julia flycheck-cstyle flycheck-css-colorguard flycheck-clangcheck flatui-dark-theme f3 exotica-theme enlive emojify-logos electric-operator eldoc-overlay eldoc-eval edit-server doom-themes djvu disaster diminish diffview dictionary devdocs desktop-menu desktop+ define-word dash-at-point ctags css-eldoc csharp-mode company-inf-ruby clues-theme chess checkbox calfw-org calfw-gcal calfw-cal calfw c-eldoc boxquote bm bind-key benchmark-init basic-c-compile badger-theme awk-it auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex ascii-art-to-unicode anything anti-zenburn-theme ample-theme ace-popup-menu ac-slime ac-php ac-js2 ac-ispell ac-inf-ruby ac-html-csswatcher ac-html-bootstrap ac-html ac-helm ac-etags ac-emoji ac-clang ac-c-headers)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
@@ -114,7 +117,6 @@
  '(org-document-title ((t (:foreground "pale turquoise" :weight bold))))
  '(org-level-1 ((t (:inherit outline-1 :weight bold))))
  '(org-level-2 ((t (:inherit outline-2 :slant italic))))
- '(org-tag ((t (:box (:line-width 2 :color "grey75" :style pressed-button) :slant normal :weight bold))))
- '(term-color-blue ((t (:background "dark slate blue" :foreground "dark slate blue")))))
+ '(org-tag ((t (:box (:line-width 2 :color "grey75" :style pressed-button) :slant normal :weight bold)))))
 
 ;;; custom.el ends here

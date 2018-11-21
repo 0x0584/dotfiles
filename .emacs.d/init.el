@@ -9,13 +9,16 @@
 ;;
 ;;; Commentary:
 ;;
-;;   Emacs Configuration
+;;    Emacs Configuration
 ;;
 ;;; Summary:
 ;;
-;;   Describe loaded files.
-;;   Describe loaded modes.
-;;   Describe load time.
+;;    Load modes.el -- Modes configurations
+;;    Load defuns.el -- Useful Emacs Lisp functions
+;;    Load configs.el -- Some addtional Emacs configurations
+;;    Load keybindings.el -- My Emacs keybindings
+;;    Load custom.el -- customized variables and faces
+;;    Load beta.el -- Anything that I would test
 ;;
 ;; This is configuration is done after working with a messy
 ;; Emacs configuration for three years.	 Now after dealing with
@@ -23,13 +26,13 @@
 ;;
 ;;   - You would need to configure your Emacs all over someday.
 ;;
-;;; User options defined here:
+;;; Variables defined here:
 ;;
-;;; Commands defined here:
+;;     `*emacs-load-start*'
 ;;
-;;; Interactive functions defined here:
+;;; Functions defined here:
 ;;
-;;; Non-interactive functions defined here:
+;;     `display-loading-time', `time-to-ms', `ensure-package-installed'
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -52,25 +55,6 @@
 ;;
 ;;; Code:
 
-;; a variable
-(defvar *emacs-load-start* (current-time))
-
-(defun time-to-ms (time)
-  "Convert TIME to mille seconds."
-  (+ (* (+ (* (car time) (expt 2 16))
-	   (car (cdr time)))
-	1000000)
-     (car (cdr (cdr time)))))
-
-(defun display-loading-time ()
-  "Displays the loading time of Emacs."
-  (message ".emacs loaded in %fms"
-	   (/ (- (time-to-ms (current-time))
-		 (time-to-ms *emacs-load-start*))
-	      1000000.0)))
-
-(add-hook 'after-init-hook 'display-loading-time t)
-
 ;; Load packages
 (require 'package)
 (package-initialize)
@@ -88,7 +72,7 @@ Return a list of installed PACKAGES or nil for every skipped package."
        (package-refresh-contents)
        (package-install package)))
    packages))
-
+
 (ensure-package-installed
  'ac-etags
  'ac-helm
@@ -269,35 +253,36 @@ Return a list of installed PACKAGES or nil for every skipped package."
  'yaoddmuse
  'zeal-at-point
  'zenburn-theme)
-
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-
-(require 'init-other "~/.emacs.d/lisp/init-other.el")
-(require 'init-helm "~/.emacs.d/lisp/init-helm.el")
-(require 'init-prog "~/.emacs.d/lisp/init-prog.el")
-(require 'init-org "~/.emacs.d/lisp/init-org.el")
-(require 'init-ac "~/.emacs.d/lisp/init-ac.el")
-
-;; Load sensitive data coniguration
-(load-file ".secrets.el")
+
 
 ;; Load Emacs modes configurations
-(load-file "modes.el")
+(load-file "~/.emacs.d/modes.el")
 
-;; Load Custom functions
-(load-file "defuns.el")
+;; Load custom functions
+(load-file "~/.emacs.d/defuns.el")
 
 ;; Load some additional configurations
-(load-file "configs.el")
+(load-file "~/.emacs.d/configs.el")
 
 ;; Load personal keybindings
-(load-file "keybindings.el")
+(load-file "~/.emacs.d/keybindings.el")
 
 ;; Load custom variables and faces
-(load-file "custom.el")
+(load-file "~/.emacs.d/custom.el")
 
 ;; Load beta configurations
-(load-file "beta.el")
+(load-file "~/.emacs.d/beta.el")
+
+(require 'benchmark)
+
+(let ((lisp-dir "~/.emacs.d/lisp"))
+  (add-to-list 'load-path lisp-dir)
+  (mapc (lambda (fname)
+	  (let ((feat (intern (file-name-base fname))))
+		(message "Feature '%s' loaded in %.2fs" feat
+			 (benchmark-elapse (require feat fname)))
+	      (require feat fname)))
+	(directory-files lisp-dir t "\\.el")))
 
 (provide 'init)
 ;;; init.el ends here

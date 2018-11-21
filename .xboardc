@@ -1,0 +1,277 @@
+;
+; xboard 4.9.1 Save Settings file
+;
+; You can edit the values of options that are already set in this file,
+; but if you add other options, the next Save Settings will not save them.
+; Use a shortcut, an @indirection file, or a .bat file instead.
+;
+-saveDate 1536261042
+-whitePieceColor #ffffff
+-blackPieceColor #202020
+-lightSquareColor #C8C365
+-darkSquareColor #77A26D
+-highlightSquareColor #ffff00
+-premoveHighlightColor #ff0000
+-movesPerSession 40
+-variations true
+-appendPV true
+-internetChessServerInputBox false
+-soundProgram "aplay -q"
+-fontSizeTolerance 4
+-lowTimeWarningColor #FF0000
+-lowTimeWarning false
+-titleInWindow false
+-flashCount 0
+-flashRate 5
+-pieceImageDirectory ""
+-trueColors false
+-soundDirectory "/usr/share/games/xboard/sounds"
+-msLoginDelay 0
+-pasteSelection false
+-dropMenu false
+-pieceMenu false
+-sweepPromotions true
+-monoMouse false
+-timeDelay 1
+-timeControl "20"
+-seekGraph true
+-autoRefresh false
+-autoBox true
+-saveGameFile ""
+-autoSaveGames false
+-onlyOwnGames false
+-monoMode false
+-showCoords true
+-showThinking true
+-ponderNextMove true
+-periodicUpdates true
+-popupExitMessage true
+-popupMoveErrors false
+-boardSize Medium
+-alwaysOnTop false
+-autoCallFlag false
+-autoComment false
+-autoCreateLogon false
+-autoObserve false
+-autoFlipView true
+-autoRaiseBoard true
+-alwaysPromoteToQueen false
+-oldSaveStyle false
+-quietPlay false
+-getMoveList true
+-testLegality true
+-premove true
+-premoveWhite false
+-premoveWhiteText ""
+-premoveBlack false
+-premoveBlackText ""
+-icsAlarm false
+-icsAlarmTime 5000
+-animateMoving false
+-animateSpeed 10
+-animateDragging true
+-blindfold false
+-highlightLastMove true
+-colorizeMessages true
+-colorShout green
+-colorSShout green,black,1
+-colorChannel1 cyan
+-colorChannel cyan,black,1
+-colorKibitz magenta,black,1
+-colorTell yellow,black,1
+-colorChallenge red,black,1
+-colorRequest red
+-colorSeek blue
+-colorNormal default
+-soundShout ""
+-soundSShout ""
+-soundChannel1 ""
+-soundChannel ""
+-soundKibitz ""
+-soundTell "phone.wav"
+-soundChallenge "gong.wav"
+-soundRequest ""
+-soundSeek ""
+-soundMove "woodthunk.wav"
+-soundBell ""
+-soundRoar "roar.wav"
+-soundIcsWin ""
+-soundIcsLoss ""
+-soundIcsDraw ""
+-soundIcsUnfinished ""
+-soundIcsAlarm "penalty.wav"
+-disguisePromotedPieces true
+-saveSettingsOnExit false
+-icsMenu {Give me;ptell Please give me $input;
+Avoid;ptell Please don't let him get $input;
+Q;$add a Queen $input;
+R;$add a Rook $input;
+B;$add a Bishop $input;
+N;$add a Knight $input;
+P;$add a Pawn $input;
+Dead;ptell I will be checkmated;
+MultiLine;
+set open 0
+set seek 0
+set tell 1;
+Kill;ptell I will checkmate him!;
+Who;who;
+Finger (name);finger $name;
+Players;players;
+Vars (name);vars $name;
+Games;games;
+Observe (name);observe $name;
+Sought;sought;
+Match (name);match $name;
+Tell (name);tell $name $input;
+Play (name);play $name;
+Message (name);message $name $input;
+Copy;$copy;
+Open Chat Box (name);$chat;
+}
+-icsNames {"fics" -icshost freechess.org -icshelper timeseal
+"icc" -icshost chessclub.com -icshelper timestamp
+"kc" -icshost alanimus.com -icshelper timeseal
+}
+-recentEngines 4
+-recentEngineList {fairymax
+}
+-firstChessProgramNames {fairymax
+"Fruit 2.1" -fcp fruit -fUCI
+"Crafty" -fcp crafty
+"GNU Chess" -fcp gnuchess
+shamax
+maxqi
+}
+-themeNames {[Event "DSB-18.Kongress"]
+[Site "Breslau"]
+[Date "1912.??.??"]
+[Round "14"]
+[White "Cohn, Erich"]
+[Black "Barasz, Zsigmond"]
+[Result "1/2-1/2"]
+[WhiteElo "0"]
+[BlackElo "0"]
+[ECO "D02"]
+}
+-showButtonBar true
+-pgnExtendedInfo true
+-hideThinkingFromHuman false
+-pgnTimeLeft false
+-liteBackTextureFile "/usr/share/games/xboard/themes/textures/wood_l.png"
+-darkBackTextureFile "/usr/share/games/xboard/themes/textures/wood_d.png"
+-liteBackTextureMode 1
+-darkBackTextureMode 1
+-renderPiecesWithFont ""
+-fontPieceToCharTable ""
+-fontPieceSize 80
+-overrideLineGap 1
+-adjudicateLossThreshold 0
+-delayBeforeQuit 0
+-delayAfterQuit 0
+-pgnEventHeader "Computer Chess Game"
+-defaultFrcPosition -1
+-gameListTags "eprd"
+-saveOutOfBookInfo true
+-showEvalInMoveHistory true
+-evalHistColorWhite #FFFFB0
+-evalHistColorBlack #AD5D3D
+-highlightMoveWithArrow true
+-stickyWindows false
+-adjudicateDrawMoves 0
+-autoDisplayComment true
+-autoDisplayTags true
+-adapterCommand 'polyglot -noini -ec "%fcp" -ed "%fd" -uci NalimovCache=%defaultCacheSizeEGTB -pg ShowTbHits=true'
+-uxiAdapter ""
+-polyglotDir ""
+-usePolyglotBook true
+-polyglotBook ""
+-bookDepth 12
+-bookVariation 50
+-discourageOwnBooks false
+-defaultHashSize 64
+-defaultCacheSizeEGTB 4
+-defaultPathEGTB ""
+-language ""
+-usePieceFont false
+-useBoardTexture true
+-useBorder false
+-border ""
+-autoInstall "ALL"
+-fixedSize false
+-showMoveTime false
+-pgnNumberTag false
+-oneClickMove false
+-defaultMatchGames 10
+-matchPause 10000
+-testClaims true
+-checkMates true
+-materialDraws true
+-trivialDraws false
+-ruleMoves 51
+-repeatsToDraw 6
+-backgroundObserve false
+-dualBoard false
+-smpCores 1
+-egtFormats "syzygy:/EGT/Syzygy,scorpio:/EGT/bitbases"
+-niceEngines 0
+-logoSize 0
+-logoDir "."
+-autoLogo false
+-featureDefaults ""
+-showTargetSquares true
+-absoluteAnalysisScores false
+-scoreWhite false
+-evalZoom 1
+-evalThreshold 25
+-pairingEngine ""
+-defaultTourneyName "Tourney_%y%M%d_%h%m.trn"
+-viewerOptions "-ncp -engineOutputUp false -saveSettingsOnExit false"
+-tourneyOptions "-ncp -mm -saveSettingsOnExit false"
+-autoCopyPV false
+-topLevel true
+-dialogColor ""
+-buttonColor ""
+-memoHeaders true
+-messageSuppress ""
+-analysisBell 0
+-timeOddsMode 0
+-keepLineBreaksICS false
+-winWidth 565
+-winHeight 660
+-x 53
+-y 27
+-icsUp false
+-icsX 2147483595
+-icsY 2147483621
+-icsW -2147483648
+-icsH -2147483648
+-commentX 0
+-commentY 382
+-commentW 606
+-commentH 238
+-tagsX 621
+-tagsY 266
+-tagsW 362
+-tagsH 248
+-gameListX 573
+-gameListY 107
+-gameListW 604
+-gameListH 309
+-slaveX 2147483595
+-slaveY 2147483621
+-moveHistoryUp false
+-moveHistoryX 340
+-moveHistoryY 808
+-moveHistoryW 404
+-moveHistoryH 74
+-evalGraphUp false
+-evalGraphX 702
+-evalGraphY 313
+-evalGraphW 521
+-evalGraphH 275
+-engineOutputUp false
+-engineOutputX 158
+-engineOutputY 524
+-engineOutputW 504
+-engineOutputH 269

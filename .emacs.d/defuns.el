@@ -13,17 +13,16 @@
 ;;
 ;;; Summary:
 ;;
-;;   Describe loaded files.
-;;   Describe loaded modes.
-;;   Describe load time.
-;;
-;;; User options defined here:
-;;
-;;; Commands defined here:
+;;    All function used elsewhere are defined here.
 ;;
 ;;; Interactive functions defined here:
+;;     `create-tags', `next-code-buffer', `named-term',
+;;     `named-term-below', `move-line', `move-line-up',
+;;     `move-line-down', `kill-other-buffers', `find-overlays-specifying', `emacs-quit-confirm', `de/highlight-line', `delete-nl-spaces', `delete-nl-spaces-find-file-hook', `code-buffer', `browse-file-directory', `save-buffer-if-modified', `safe-revert-buffer', `switch-window-orientation', `split-current-window', `select-line', `swap-buffer', `xah-syntax-color-hex', `remove-highlight', previous-code-buffer
 ;;
 ;;; Non-interactive functions defined here:
+;;
+;;     `insert-time`, `insert-date`
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -258,21 +257,6 @@ Ask to say the buffer if modified."
   (interactive)
   (remove-overlays (point-min)) (point-max))
 
-(defun org-turn-on-iimage-in-org ()
-  "Display images in your org file."
-  (interactive)
-  (iimage-mode)
-  (set-face-underline 'org-link nil))
-
-;; function to toggle images in a org bugger
-(defun org-toggle-iimage-in-org ()
-  "Display images in your org file."
-  (interactive)
-  (if (face-underline 'org-link)
-      (set-face-underline 'org-link nil)
-    (set-face-underline 'org-link t))
-  (call-interactively 'iimage-mode))
-
 (defun select-line ()
   "Select the current line."
   (interactive)
@@ -317,19 +301,6 @@ Version 2017-03-12"
 	(save-buffers-kill-emacs)))
   (message "emacs quit aborted"))
 
-(defun org-html2org-clipboard ()
-  "Convert clipboard contents from HTML to Org and then paste (yank)."
-  (interactive)
-  (kill-new (shell-command-to-string
-	     (concat
-	      "xclip -o -t TARGETS    | "
-	      "grep -q text/html     && "
-	      "(xclip -o -t text/html | "
-	      "pandoc -f html -t json | "
-	      "pandoc -f json -t org) || "
-	      "xclip -o")))
-  (yank))
-
 (defun swap-buffer ()
   "Swap the current buffer with the previous buffer in the list."
   (interactive)
@@ -340,49 +311,5 @@ Version 2017-03-12"
 	   (set-window-buffer window-b buffer-a)
 	   (switch-to-buffer buffer-b)
 	   (other-window 1)))))
-
-(defun delete-nl-spaces ()
-  "Execute `delete-nl-spaces'."
-  (if (delete-nl-spaces-mode)
-      (save-excursion
-	;; Delete initial blank lines
-	(goto-char (point-min))
-	(skip-chars-forward " \n\t")
-	(skip-chars-backward " \t")
-	(if (> (point) 0)
-	    (delete-char (- (- (point) 1))))
-
-	;; Change spaces on tabs or tabs on spaces
-	(if indent-tabs-mode
-	    (tabify (point-min) (point-max))
-	  (untabify (point-min) (point-max)))
-
-	;; Delete the trailing whitespaces and all blank lines
-	(let ((delete-trailing-lines t))
-	  (delete-trailing-whitespace))
-
-	;; Delete the latest newline
-	(unless require-final-newline
-	  (goto-char (point-max))
-	  (let ((trailnewlines (skip-chars-backward "\n\t")))
-	    (if (< trailnewlines 0)
-		(delete-char (abs trailnewlines))))))))
-
-(defun delete-nl-spaces-find-file-hook ()
-  "Check whether to disable `delete-nl-spaces'."
-  (when (and (buffer-file-name) (file-exists-p (buffer-file-name)))
-    (let ((buffer (current-buffer))
-	  (final-newline require-final-newline)
-	  (tabs-mode indent-tabs-mode))
-      (with-temp-buffer
-	(setq-local require-final-newline final-newline)
-	(setq indent-tabs-mode tabs-mode)
-	(insert-buffer-substring buffer)
-	(delete-nl-spaces)
-	(unless (= (compare-buffer-substrings buffer nil nil nil nil nil) 0)
-	  (set-buffer buffer)
-	  (delete-nl-spaces-mode -1)
-	  (message "delete-nl-spaces-mode disabed for %s"
-		   (buffer-name buffer)))))))
 
 ;;; defuns.el ends here

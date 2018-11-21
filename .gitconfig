@@ -66,6 +66,7 @@
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"
     deleted = log --diff-filter=D --summary
+	whatadded = log --diff-filter=A --summary
 
 [cola]
 	tabwidth = 4

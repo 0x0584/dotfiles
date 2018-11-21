@@ -46,6 +46,7 @@
 (setq org-src-fontify-natively t)
 
 (defun plantuml-render-buffer ()
+  "."
   (interactive)
   (message "PLANTUML Start rendering")
   (shell-command (concat "java -jar ~/.emacs.d/plantuml/plantuml.jar "
@@ -54,12 +55,14 @@
 
 ;; Image reloading
 (defun reload-image-at-point ()
+  "."
   (interactive)
   (message "reloading image at point in the current buffer...")
   (image-refresh (get-text-property (point) 'display)))
 
 ;; Image resizing and reloading
 (defun resize-image-at-point ()
+  "."
   (interactive)
   (message "resizing image at point in the current buffer123...")
   (let* ((image-spec (get-text-property (point) 'display))
@@ -214,6 +217,34 @@ BEG and END default to the buffer boundaries."
       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
 	"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
 	"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+(defun org-turn-on-iimage-in-org ()
+  "Display images in your org file."
+  (interactive)
+  (iimage-mode)
+  (set-face-underline 'org-link nil))
+
+;; function to toggle images in a org bugger
+(defun org-toggle-iimage-in-org ()
+  "Display images in your org file."
+  (interactive)
+  (if (face-underline 'org-link)
+      (set-face-underline 'org-link nil)
+    (set-face-underline 'org-link t))
+  (call-interactively 'iimage-mode))
+
+(defun org-html2org-clipboard ()
+  "Convert clipboard contents from HTML to Org and then paste (yank)."
+  (interactive)
+  (kill-new (shell-command-to-string
+	     (concat
+	      "xclip -o -t TARGETS    | "
+	      "grep -q text/html     && "
+	      "(xclip -o -t text/html | "
+	      "pandoc -f html -t json | "
+	      "pandoc -f json -t org) || "
+	      "xclip -o")))
+  (yank))
 
 (provide 'init-org)
 ;;; init-org.el ends here
