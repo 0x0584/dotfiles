@@ -1,6 +1,8 @@
 #!/bin/sh
 #
 # Sync all the dotfiles across the system.
+#
+# TODO: add `import from` and `export to` option
 
 # Emacs is my main programming envirenment.
 echo "Syncing Emacs configuration..";

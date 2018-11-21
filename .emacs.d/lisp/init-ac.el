@@ -14,13 +14,13 @@
 ;;
 ;;; Code:
 
+(setq ac-auto-start 3)
+(setq ac-dwim t)
+
 (auto-complete-mode 1)
 (auto-complete)
 
 (ac-config-default)
-
-(setq ac-auto-start 3)
-(setq ac-dwim t)
 
 (provide 'init-ac)
 ;;; init-ac.el ends here

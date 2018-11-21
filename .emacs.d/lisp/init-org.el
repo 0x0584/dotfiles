@@ -15,12 +15,10 @@
 ;;; Code:
 
 (require 'iimage)
-(iimage-mode)
-
 (require 'org-alert)
+
 (setq alert-default-style 'libnotify)
 (setq org-alert-interval 2500)	; 60 sec * 30 min
-(org-alert-enable)
 
 ;; Org-mode Configuration
 (setq org-todo-keywords
@@ -31,19 +29,87 @@
 (setq org-agenda-files (list "~/orged/agenda"))
 (setq org-agenda-skip-scheduled-if-done t)
 
-(setq org-latex-create-formula-image-program 'dvisvgm)
+(setq org-preview-latex-default-process 'dvisvgm)
 
 (setq org-format-latex-options
       (plist-put org-format-latex-options
 		 :scale 1.3))
 
-(autoload 'iimage-mode "iimage" "Support Inline image minor mode." t)
-(autoload 'turn-on-iimage-mode "iimage" "Turn on Inline image minor mode." t)
-(add-to-list 'iimage-mode-image-regex-alist '("@startuml\s+\\(.+\\)" . 1))
-
-(add-hook 'org-mode-hook 'visual-line-mode)
 (setq org-return-follows-link t)
 (setq org-src-fontify-natively t)
+
+(setq image-file-name-extensions
+      (quote
+       ("png" "jpeg" "jpg" "gif" "tiff" "tif"
+	"xbm" "xpm" "pbm" "pgm" "ppm" "pnm"
+	"svg" "pdf" "bmp")))
+
+(setq org-image-actual-width 400)
+
+(setq org-imagemagick-display-command
+      "convert -density 600 \"%s\" -thumbnail \"%sx%s>\" \"%s\"")
+
+(setq org-image-actual-width (/ (display-pixel-width) 3))
+
+(setq org-agenda-custom-commands
+      '(("x" "Exams"
+	 ;; agenda with only items tagged event
+	 ((agenda "" ((org-agenda-ndays 45)
+		      (org-agenda-tag-filter-preset '("+exam"))
+		      (org-deadline-warning-days 0)))))))
+
+(setq org-clock-persist 'history)
+
+;; Agenda clock report parameters
+(setq org-agenda-clockreport-parameter-plist
+      '(:link t :maxlevel 6 :fileskip0 t :compact t :narrow 60 :score 0))
+
+;; If idle for more than 15 minutes, resolve the things by asking what to do
+;; with the clock time
+(setq org-clock-idle-time 15)
+
+;; global Effort estimate values
+(setq org-global-properties
+      '(("Effort_ALL" .
+	 "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")))
+;;	  1    2    3	 4    5	   6	7    8	  9    0
+;; These are the hotkeys ^^
+;; Set default column view headings: Task Priority Effort Clock_Summary
+(setq org-columns-default-format
+      "%50ITEM(Task) %2PRIORITY %10Effort(Effort){:} %10CLOCKSUM")
+
+(setq org-latex-listings 'minted)
+(setq org-latex-pdf-process
+      '((concat "pdflatex -shell-escape -interaction "
+		"nonstopmode -output-directory %o %f")))
+
+(defun org-turn-on-iimage-in-org ()
+  "Display images in your org file."
+  (interactive)
+  (iimage-mode)
+  (set-face-underline 'org-link nil))
+
+;; function to toggle images in a org bugger
+(defun org-toggle-iimage-in-org ()
+  "Display images in your org file."
+  (interactive)
+  (if (face-underline 'org-link)
+      (set-face-underline 'org-link nil)
+    (set-face-underline 'org-link t))
+  (call-interactively 'iimage-mode))
+
+(defun org-html2org-clipboard ()
+  "Convert clipboard contents from HTML to Org and then paste (yank)."
+  (interactive)
+  (kill-new (shell-command-to-string
+	     (concat
+	      "xclip -o -t TARGETS    | "
+	      "grep -q text/html     && "
+	      "(xclip -o -t text/html | "
+	      "pandoc -f html -t json | "
+	      "pandoc -f json -t org) || "
+	      "xclip -o")))
+  (yank))
 
 (defun plantuml-render-buffer ()
   "."
@@ -74,35 +140,6 @@
 	     file file))
     (reload-image-at-point)))
 
-(org-babel-do-load-languages
- (quote org-babel-load-languages)
- (quote ((emacs-lisp . t)
-	 (java . t)
-	 (dot . t)
-	 (ditaa . t)
-	 (R . t)
-	 (python . t)
-	 (ruby . t)
-	 (gnuplot . t)
-	 (clojure . t)
-	 (sh . t)
-	 (ledger . t)
-	 (org . t)
-	 (plantuml . t)
-	 (latex . t))))
-(message "done.")
-
-(setq image-file-name-extensions
-      (quote
-       ("png" "jpeg" "jpg" "gif" "tiff" "tif"
-	"xbm" "xpm" "pbm" "pgm" "ppm" "pnm"
-	"svg" "pdf" "bmp")))
-
-(setq org-image-actual-width 400)
-
-(setq org-imagemagick-display-command
-      "convert -density 600 \"%s\" -thumbnail \"%sx%s>\" \"%s\"")
-
 (defun org-display-inline-images (&optional include-linked refresh beg end)
   "Display inline images.
 Normally only links without a description part are inlined, because this
@@ -124,7 +161,7 @@ BEG and END default to the buffer boundaries."
       (setq beg (or beg (point-min)) end (or end (point-max)))
       (goto-char beg)
       (let ((re (concat "\\[\\[\\(\\(file:\\)\\|\\([./~]\\)\\)\\([^]\n]+?"
-			(substring (org-image-file-name-regexp) 0 -2)
+			(substring (image-file-name-regexp) 0 -2)
 			"\\)\\]" (if include-linked "" "\\]")))
 	    old file ov img)
 	(while (re-search-forward re end t)
@@ -164,20 +201,29 @@ BEG and END default to the buffer boundaries."
 			       (list 'org-display-inline-remove-overlay))
 		  (push ov org-inline-image-overlays))))))))))
 
-;; add the org file link format to the iimage mode regex
+(iimage-mode)
+(org-alert-enable)
+(org-clock-persistence-insinuate)
 
-;;  add a hook so we can display images on load
-(add-hook 'org-mode-hook '(lambda () (org-turn-on-iimage-in-org)))
+(org-babel-do-load-languages
+ (quote org-babel-load-languages)
+ (quote ((emacs-lisp . t)
+	 (java . t)
+	 (dot . t)
+	 (ditaa . t)
+	 (R . t)
+	 (python . t)
+	 (ruby . t)
+	 (gnuplot . t)
+	 (clojure . t)
+	 (sh . t)
+	 (ledger . t)
+	 (org . t)
+	 (plantuml . t)
+	 (latex . t))))
 
-(setq org-image-actual-width (/ (display-pixel-width) 3))
-
-(setq org-agenda-custom-commands
-      '(("x" "Exams"
-	 ;; agenda with only items tagged event
-	 ((agenda "" ((org-agenda-ndays 45)
-		      (org-agenda-tag-filter-preset '("+exam"))
-		      (org-deadline-warning-days 0)))))))
-
+(add-to-list 'iimage-mode-image-regex-alist '("@startuml\s+\\(.+\\)" . 1))
+(add-to-list 'org-latex-packages-alist '("" "minted"))
 (add-to-list 'org-agenda-custom-commands
 	     '("W" "Weekend" ((agenda "" ))
 	       ((org-agenda-overriding-header "20 days")
@@ -190,61 +236,11 @@ BEG and END default to the buffer boundaries."
 			   "\\)\\]")
 		   1))
 
-(setq org-clock-persist 'history)
-(org-clock-persistence-insinuate)
+(autoload 'iimage-mode "iimage" "Support Inline image minor mode." t)
+(autoload 'turn-on-iimage-mode "iimage" "Turn on Inline image minor mode." t)
 
-;; Agenda clock report parameters
-(setq org-agenda-clockreport-parameter-plist
-      '(:link t :maxlevel 6 :fileskip0 t :compact t :narrow 60 :score 0))
-
-;; If idle for more than 15 minutes, resolve the things by asking what to do
-;; with the clock time
-(setq org-clock-idle-time 15)
-
-;; global Effort estimate values
-(setq org-global-properties
-      '(("Effort_ALL" .
-	 "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")))
-;;	  1    2    3	 4    5	   6	7    8	  9    0
-;; These are the hotkeys ^^
-;; Set default column view headings: Task Priority Effort Clock_Summary
-(setq org-columns-default-format
-      "%50ITEM(Task) %2PRIORITY %10Effort(Effort){:} %10CLOCKSUM")
-
-(setq org-latex-listings 'minted)
-(add-to-list 'org-latex-packages-alist '("" "minted"))
-(setq org-latex-pdf-process
-      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-	"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-	"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
-
-(defun org-turn-on-iimage-in-org ()
-  "Display images in your org file."
-  (interactive)
-  (iimage-mode)
-  (set-face-underline 'org-link nil))
-
-;; function to toggle images in a org bugger
-(defun org-toggle-iimage-in-org ()
-  "Display images in your org file."
-  (interactive)
-  (if (face-underline 'org-link)
-      (set-face-underline 'org-link nil)
-    (set-face-underline 'org-link t))
-  (call-interactively 'iimage-mode))
-
-(defun org-html2org-clipboard ()
-  "Convert clipboard contents from HTML to Org and then paste (yank)."
-  (interactive)
-  (kill-new (shell-command-to-string
-	     (concat
-	      "xclip -o -t TARGETS    | "
-	      "grep -q text/html     && "
-	      "(xclip -o -t text/html | "
-	      "pandoc -f html -t json | "
-	      "pandoc -f json -t org) || "
-	      "xclip -o")))
-  (yank))
+(add-hook 'org-mode-hook 'visual-line-mode)
+(add-hook 'org-mode-hook '(lambda () (org-turn-on-iimage-in-org)))
 
 (provide 'init-org)
 ;;; init-org.el ends here
