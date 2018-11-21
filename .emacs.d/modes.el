@@ -52,78 +52,72 @@
 ;;
 ;;; Code:
 
-(require 'package)
-(require 'rich-minority)
-(require 'smex) ; Not needed if you use package.el
-(require 'rainbow-delimiters)
-(require 'helm-config)
-(require 'fzf)
-
 ;; Winner mode to easily switch between windows configs
-(package-initialize)
-
-(helm-mode 1)
-(helm-autoresize-mode t)
-
 
 ;; Setting the initial frame size
 (when (window-system)
   (tooltip-mode -1)
   (tool-bar-mode -1)
   (menu-bar-mode -1)
+  (scroll-bar-mode -1))
+
+(if (not window-system)
+    t
   (set-frame-height (selected-frame) 35)
   (set-frame-width (selected-frame) 82))
 
-(auto-complete-mode 1)
-(auto-complete)
+(when (eq system-type 'darwin)		; mac specific settings
+  (setq mac-option-modifier 'alt)
+  (setq mac-command-modifier 'meta)
+  ;; sets fn-delete to be right-delete
+  (global-set-key [kp-delete] 'delete-char))
 
+(which-key-mode 1)
 (winner-mode 1)
-(rainbow-delimiters-mode 1)
-
 (hl-sexp-mode 1)
 (global-hl-line-mode 1);; line selection
 (global-undo-tree-mode)
 (show-paren-mode 1)
 
 ;; Who needs a mouse inside Emacs?
+
+(define-minor-mode delete-nl-spaces-mode
+  "Toggle deleting needless spaces (Delete Needless Spaces mode).
+With a prefix argument ARG, enable Delete Needless Spaces mode if ARG is
+positive, and disable it otherwise.  If called from Lisp, enable
+the mode if ARG is omitted or nil.
+If Delete Needless Spaces mode is enable, before a buffer is saved to its file:
+- delete initial blank lines;
+- change spaces on tabs or vice versa depending on `indent-tabs-mode';
+- delete the trailing whitespaces and empty last lines;
+- delete also latest blank line if `require-final-newline' is nil;"
+  :init-value t
+  :lighter " dns")
+
+(define-minor-mode disable-mouse-mode
+  "A minor-mode that disables all mouse keybinds."
+  :global t
+  :lighter " 🐭"
+  :keymap (make-sparse-keymap))
+
+(dolist (type '(mouse down-mouse drag-mouse
+		      double-mouse triple-mouse))
+  (dolist (prefix '("" C- M- S- M-S- C-M- C-S- C-M-S-))
+    ;; Yes, I actually HAD to go up to 7 here.
+    (dotimes (n 7)
+      (let ((k (format "%s%s-%s" prefix type n)))
+	(define-key disable-mouse-mode-map
+	  (vector (intern k)) #'ignore)))))
+
 (disable-mouse-mode 1)
 
-(rich-minority-mode 1)
-(setf rm-blacklist "")
+(add-hook 'after-init-hook #'global-emojify-mode)
 
-;; Can be omitted. This might cause a (minimal) delay
-(smex-initialize) ; when Smex is auto-initialized on its first run.
+(require 'telephone-line)
+(telephone-line-mode)
 
-;; -- Display images in org mode
-;; enable image mode first
-(iimage-mode)
-;; add the org file link format to the iimage mode regex
-(add-to-list 'iimage-mode-image-regex-alist
-	     (cons (concat "\\[\\[file:\\(~?" iimage-mode-image-filename-regex "\\)\\]")  1))
-;;  add a hook so we can display images on load
-(add-hook 'org-mode-hook '(lambda () (org-turn-on-iimage-in-org)))
-;; function to setup images for display on load
-(defun org-turn-on-iimage-in-org ()
-  "Display images in your org file."
-  (interactive)
-  (turn-on-iimage-mode)
-  (set-face-underline-p 'org-link nil))
-;; function to toggle images in a org bugger
-(defun org-toggle-iimage-in-org ()
-  "Display images in your org file."
-  (interactive)
-  (if (face-underline-p 'org-link)
-      (set-face-underline-p 'org-link nil)
-    (set-face-underline-p 'org-link t))
-  (call-interactively 'iimage-mode))
-(setq org-image-actual-width (/ (display-pixel-width) 3))
-
-;; c-eldoc
-(load "c-eldoc")
-
-(add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-(add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode)
-(setq c-eldoc-includes "-I./include -I../include -I./ -I../ ")
-(setq c-eldoc-buffer-regenerate-time 60)
+(add-hook 'find-file-hook 'delete-nl-spaces-find-file-hook)
+(add-hook 'before-save-hook 'delete-nl-spaces)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;; modes.el ends here

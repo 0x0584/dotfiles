@@ -52,14 +52,231 @@
 ;;
 ;;; Code:
 
+;; a variable
+(defvar *emacs-load-start* (current-time))
+
+(defun time-to-ms (time)
+  "Convert TIME to mille seconds."
+  (+ (* (+ (* (car time) (expt 2 16))
+	   (car (cdr time)))
+	1000000)
+     (car (cdr (cdr time)))))
+
+(defun display-loading-time ()
+  "Displays the loading time of Emacs."
+  (message ".emacs loaded in %fms"
+	   (/ (- (time-to-ms (current-time))
+		 (time-to-ms *emacs-load-start*))
+	      1000000.0)))
+
+(add-hook 'after-init-hook 'display-loading-time t)
+
 ;; Load packages
 (require 'package)
-
 (package-initialize)
 
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
 	("melpa" . "http://melpa.milkbox.net/packages/")))
+
+(defun ensure-package-installed (&rest packages)
+  "Assure every package is installed, ask for installation if it’s not.
+Return a list of installed PACKAGES or nil for every skipped package."
+  (mapcar
+   (lambda (package)
+     (unless (package-installed-p package)
+       (package-refresh-contents)
+       (package-install package)))
+   packages))
+
+(ensure-package-installed
+ 'ac-etags
+ 'ac-helm
+ 'ac-inf-ruby
+ 'ac-ispell
+ 'ac-php
+ 'ac-php-core
+ 'ac-slime
+ 'ace-popup-menu
+ 'alert
+ 'anti-zenburn-theme
+ 'anything
+ 'async
+ 'auctex
+ 'auto-complete
+ 'auto-complete-auctex
+ 'auto-complete-c-headers
+ 'auto-complete-clang
+ 'awk-it
+ 'basic-c-compile
+ 'benchmark-init
+ 'bm
+ 'boxquote
+ 'c-eldoc
+ 'checkbox
+ 'chess
+ 'clues-theme
+ 'csharp-mode
+ 'css-eldoc
+ 'devdocs
+ 'disaster
+ 'djvu
+ 'doom
+ 'edit-server
+ 'eldoc-eval
+ 'eldoc-overlay
+ 'electric-operator
+ 'emojify
+ 'emojify-logos
+ 'epl
+ 'flycheck
+ 'flycheck
+ 'flycheck-clangcheck
+ 'flycheck-css-colorguard
+ 'flycheck-cstyle
+ 'flycheck-julia
+ 'flycheck-perl6
+ 'flylisp
+ 'flymake-css
+ 'flymake-easy
+ 'flymake-jshint
+ 'flymake-jslint
+ 'flymake-json
+ 'flymake-less
+ 'flymake-ruby
+ 'function-args
+ 'fuzzy
+ 'fzf
+ 'gitignore-mode
+ 'git-timemachine
+ 'gnu-apl-mode
+ 'gnuplot
+ 'god-mode
+ 'gotham-theme
+ 'graphql
+ 'helm
+ 'helm-bibtex
+ 'helm-company
+ 'helm-core
+ 'helm-flymake
+ 'helm-git
+ 'helm-git-files
+ 'helm-git-grep
+ 'helm-perldoc
+ 'helm-robe
+ 'helm-rubygems-local
+ 'helm-rubygems-org
+ 'helm-themes
+ 'hexrgb
+ 'highlight
+ 'highlight-blocks
+ 'highlight-escape-sequences
+ 'highlight-operators
+ 'highlight-quoted
+ 'hlinum
+ 'hl-sexp
+ 'hl-todo
+ 'impatient-mode
+ 'inf-ruby
+ 'inkpot-theme
+ 'lang-refactor-perl
+ 'langtool
+ 'latexdiff
+ 'latex-preview-pane
+ 'linum-relative
+ 'magit
+ 'magit-annex
+ 'magit-filenotify
+ 'magit-find-file
+ 'magithub
+ 'magithub
+ 'magit-org-todos
+ 'magit-popup
+ 'magit-rockstar
+ 'magit-todos
+ 'markdown-mode+
+ 'memory-usage
+ 'nasm-mode
+ 'nhexl-mode
+ 'org
+ 'org-alert
+ 'org-beautify-theme
+ 'org-commentary
+ 'org-doing
+ 'org-download
+ 'org-page
+ 'org-readme
+ 'org-ref
+ 'orgtbl-ascii-plot
+ 'org-webpage
+ 'org-web-tools
+ 'parsebib
+ 'pcre2el
+ 'pdf-tools
+ 'perl6-mode
+ 'persp-mode
+ 'php-eldoc
+ 'php+-mode
+ 'pkg-info
+ 'plantuml-mode
+ 'plsense
+ 'plsql
+ 'popup
+ 'popup-complete
+ 'popup-kill-ring
+ 'popup-switcher
+ 'popwin
+ 'pos-tip
+ 'quack
+ 'quickrun
+ 'rainbow-blocks
+ 'rainbow-delimiters
+ 'restart-emacs
+ 'rich-minority
+ 'rubocop
+ 'ruby-block
+ 'ruby-compilation
+ 'ruby-dev
+ 'ruby-electric
+ 'ruby-factory
+ 'ruby-hash-syntax
+ 'ruby-refactor
+ 'ruby-tools
+ 'runtests
+ 'rvm
+ 'show-css
+ 'showkey
+ 'simple-httpd
+ 'slime
+ 'smex
+ 'sotlisp
+ 'spaces
+ 'sr-speedbar
+ 'ssh
+ 'super-save
+ 'svg
+ 'svg-clock
+ 'tablist
+ 'telephone-line
+ 'tldr
+ 'tuareg
+ 'undo-tree
+ 'web-mode
+ 'websocket
+ 'which-key
+ 'wordnut
+ 'xkcd
+ 'yaoddmuse
+ 'zeal-at-point
+ 'zenburn-theme)
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+(require 'init-other "~/.emacs.d/lisp/init-other.el")
+(require 'init-helm "~/.emacs.d/lisp/init-helm.el")
+(require 'init-prog "~/.emacs.d/lisp/init-prog.el")
+(require 'init-org "~/.emacs.d/lisp/init-org.el")
+(require 'init-ac "~/.emacs.d/lisp/init-ac.el")
 
 ;; Load sensitive data coniguration
 (load-file ".secrets.el")
@@ -76,7 +293,11 @@
 ;; Load personal keybindings
 (load-file "keybindings.el")
 
+;; Load custom variables and faces
+(load-file "custom.el")
+
 ;; Load beta configurations
 (load-file "beta.el")
 
+(provide 'init)
 ;;; init.el ends here

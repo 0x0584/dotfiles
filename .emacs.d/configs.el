@@ -9,27 +9,21 @@
 ;;
 ;;; Commentary:
 ;;
-;;   Some Useful Emacs Functions
+;;   Some additional Emacs configurations
 ;;
-;; Summary:
+;;; Summary:
 ;;
 ;;   Describe loaded files.
 ;;   Describe loaded modes.
 ;;   Describe load time.
 ;;
-;; This is configuration is done after working with a messy
-;; Emacs configuration for three years.	 Now after dealing with
-;; Emacs Lisp for a while, I think I can handle this, as they said:
+;;; User options defined here:
 ;;
-;;   - You would need to configure your Emacs all over someday.
+;;; Commands defined here:
 ;;
-;;  User options defined here:
+;;; Interactive functions defined here:
 ;;
-;;  Commands defined here:
-;;
-;;  interactive functions defined here:
-;;
-;;  Non-interactive functions defined here:
+;;; Non-interactive functions defined here:
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -61,8 +55,7 @@
 ;; Set standard indent to 4 rather that 8
 (setq standard-indent 4)
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+(setq custom-file "~/.emacs.d/custom.el")
 
 ;; Using text-mode as the default mode for new buffers
 (setq major-mode 'text-mode)
@@ -85,19 +78,24 @@
 ;; Better that a sound, right?
 (setq visible-bell t)
 
-;; Org-mode Configuration
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "IN-PROGRESS(s!)" "EXAM" "TO-BUY(b!)"
-		  "MEETING(m!)" "|" "PENDING(p!)" "DONE(d!/@)"
-		  "CANCELED(c!/!)" "UNDER-REVISING(u)" "|" "HOLY-DAY")))
-(setq org-agenda-skip-scheduled-if-done t)
+(defalias 'wind-below 'my-split-root-window-below)
+(defalias 'wind-above 'my-split-root-window-above)
+(defalias 'wind-right 'my-split-root-window-right)
+(defalias 'wind-left 'my-split-root-window-left)
+(defalias 'window-split-toggle 'wind-tog)
+(defalias 'qrr 'query-replace-regexp)
 
-(setq helm-M-x-fuzzy-match t)
+(add-hook 'buffer-list-update-hook
+	  (lambda ()
+	    (cond
+	     ((and (eq major-mode 'c-mode)
+		   (not (memq 'light-blue custom-enabled-themes)))
+	      (disable-theme 'tango)
+	      (enable-theme 'light-blue))
+	     ((and (eq major-mode 'perl-mode)
+		   (not (memq 'tango custom-enabled-themes)))
+	      (disable-theme 'light-blue)
+	      (enable-theme 'tango)))))
 
-(ac-config-default)
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'after-init-hook #'global-emojify-mode)
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;;; configs.el ends here

@@ -330,4 +330,59 @@ Version 2017-03-12"
 	      "xclip -o")))
   (yank))
 
+(defun swap-buffer ()
+  "Swap the current buffer with the previous buffer in the list."
+  (interactive)
+  (cond ((one-window-p) (display-buffer (other-buffer)))
+	((let* ((buffer-a (current-buffer))
+		(window-b (cadr (window-list)))
+		(buffer-b (window-buffer window-b)))
+	   (set-window-buffer window-b buffer-a)
+	   (switch-to-buffer buffer-b)
+	   (other-window 1)))))
+
+(defun delete-nl-spaces ()
+  "Execute `delete-nl-spaces'."
+  (if (delete-nl-spaces-mode)
+      (save-excursion
+	;; Delete initial blank lines
+	(goto-char (point-min))
+	(skip-chars-forward " \n\t")
+	(skip-chars-backward " \t")
+	(if (> (point) 0)
+	    (delete-char (- (- (point) 1))))
+
+	;; Change spaces on tabs or tabs on spaces
+	(if indent-tabs-mode
+	    (tabify (point-min) (point-max))
+	  (untabify (point-min) (point-max)))
+
+	;; Delete the trailing whitespaces and all blank lines
+	(let ((delete-trailing-lines t))
+	  (delete-trailing-whitespace))
+
+	;; Delete the latest newline
+	(unless require-final-newline
+	  (goto-char (point-max))
+	  (let ((trailnewlines (skip-chars-backward "\n\t")))
+	    (if (< trailnewlines 0)
+		(delete-char (abs trailnewlines))))))))
+
+(defun delete-nl-spaces-find-file-hook ()
+  "Check whether to disable `delete-nl-spaces'."
+  (when (and (buffer-file-name) (file-exists-p (buffer-file-name)))
+    (let ((buffer (current-buffer))
+	  (final-newline require-final-newline)
+	  (tabs-mode indent-tabs-mode))
+      (with-temp-buffer
+	(setq-local require-final-newline final-newline)
+	(setq indent-tabs-mode tabs-mode)
+	(insert-buffer-substring buffer)
+	(delete-nl-spaces)
+	(unless (= (compare-buffer-substrings buffer nil nil nil nil nil) 0)
+	  (set-buffer buffer)
+	  (delete-nl-spaces-mode -1)
+	  (message "delete-nl-spaces-mode disabed for %s"
+		   (buffer-name buffer)))))))
+
 ;;; defuns.el ends here
