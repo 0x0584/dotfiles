@@ -1,7 +1,7 @@
 # DEFAULT COMPILER SETUP
 CC = gcc
 # COMPILATION FLAGS
-CFLAGS = -ggdb -Wall -Wextra
+CFLAGS = -g3 -Wall -Wextra
 # -O2 -Werror -pedantic -Wpadded
 # LIBRARY FLAGS
 LDFLAGS = -Iinclude -lm

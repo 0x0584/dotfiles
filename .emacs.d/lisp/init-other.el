@@ -36,6 +36,21 @@
 (rich-minority-mode 1)
 (smex-initialize) ; when Smex is auto-initialized on its first run.
 
+(require 'zone)
+(zone-when-idle 900)
+
+(zone-select-add-program 'zone-nyan-preview)
+(zone-select-add-program 'zone-rainbow)
+
+(defun zone-svg-clock ()
+  "Zone out with svg clock."
+  (interactive)
+  (let ((zone-programs [svg-clock]))
+    (zone)
+    (other-window)))
+
+(zone-select-add-program 'zone-svg-clock)
+
 (define-key isearch-mode-map (kbd "<escape>") 'god-mode-isearch-activate)
 (define-key god-mode-isearch-map (kbd "<escape>") 'god-mode-isearch-disable)
 (global-set-key (kbd "<escape>") 'god-local-mode)

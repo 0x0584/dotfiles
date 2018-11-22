@@ -23,12 +23,12 @@ cp -TRv ~/.vimrc .vimrc;
 cp -TRv ~/.bin/ .bin/;
 echo "";
 
-# Some aliases and basic setup
 echo "Syncing Other configrations..";
 cp -v ~/.bashrc .bashrc;
 cp -v ~/.gitconfig .gitconfig;
 cp -v ~/.xboardrc .xboardc;
 cp -v ~/.Xdefaults .Xdefaults;
+cp -TRv ~/.templates/ .templates
 echo "";
 
 return 0;

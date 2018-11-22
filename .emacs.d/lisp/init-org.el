@@ -18,7 +18,7 @@
 (require 'org-alert)
 
 (setq alert-default-style 'libnotify)
-(setq org-alert-interval 2500)	; 60 sec * 30 min
+(setq org-alert-interval (* 60 60))	; each hour
 
 ;; Org-mode Configuration
 (setq org-todo-keywords
