@@ -64,12 +64,12 @@
   (insert (format-time-string "%m/%d/%Y")))
 
 ;; TODO: find a way to call this regularly after a specific delay
-(defun create-tags (dir-name)
-  "Create tags file based on source code found in DIR-NAME."
-  (interactive "DDirectory: ")
+(defun create-etags ()
+  "Create TAGS file based on source code found in the current directory."
+  (interactive)
   (eshell-command
-   (concat "find . -name '*.c' -print -or -name '*.h' -print " "|"
-	   " xargs etags --append" dir-name)))
+   (concat "find . -name '*.c' -print -or -name '*.h' -print"
+	   " |	xargs etags")))
 
 (defun save-buffer-if-modified (&optional buffer)
   "Return t if the BUFFER was modified and saved."
@@ -138,14 +138,13 @@ If some buffer are modified, ask to save them."
     (let ((line-text (delete-and-extract-region start end)))
       (forward-line n)
       (insert line-text)
-      ;; restore point to original column in moved line
       (forward-line -1)
       (forward-char col))))
 
 (defun move-line-up (&optional n)
   "Move the current line up by N lines."
   (interactive "p")
-  (move-line (or n -1)))
+  (move-line (or (- n) -1)))
 
 (defun move-line-down (&optional n)
   "Move the current line down by N lines."
@@ -168,9 +167,10 @@ Ask to say the buffer if modified."
 	     "-brf -c33 -cd33 -ncdb -ce -ci4 -cli0 "
 	     "-cp33 -cs -d0 -di4 -nfc1 -nfca -hnl "
 	     "-i4 -ip0 -l75 -lp -npcs -nprs -npsl "
-	     "-saf -sai -saw -nsc -nsob -nss -ppi2 ")
+	     "-saf -sai -saw -nsc -nsob -nss -ppi2 "
+	     "-pmt ")
      (buffer-name))
-    (save-buffer)))
+    (save-buffer-if-modified)))
 
 (defun tst-mark ()
   "."

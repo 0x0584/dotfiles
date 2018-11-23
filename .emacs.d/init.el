@@ -265,7 +265,7 @@ Return a list of installed PACKAGES or nil for every skipped package."
 (load-file "~/.emacs.d/configs.el")
 
 ;; Load personal keybindings
-(load-file "~/.emacs.d/keybindings.el")
+(load-file "~/.emacs.d/kbds.el")
 
 ;; Load custom variables and faces
 (load-file "~/.emacs.d/custom.el")

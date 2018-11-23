@@ -47,6 +47,10 @@
 ;;; Code:
 
 ;; Global key sets
+
+(require 'dired)
+(define-key dired-mode-map (kbd ",") 'create-etags)
+
 (global-set-key (kbd "<f12>") 'info)
 (global-set-key (kbd "C-;") 'helm-etags-select)
 (global-set-key (kbd "C-c /") 'tags-query-replace)
@@ -86,7 +90,7 @@
 (global-set-key (kbd "M-<up>") 'move-line-up)
 (global-set-key (kbd "M-<down>") 'move-line-down)
 
-(global-set-key (kbd "C-c f") 'indent-c--buffer)
+(global-set-key (kbd "C-c f") 'indent-c-buffer)
 
 (global-set-key (kbd "C-c w <down>") 'wind-below)
 (global-set-key (kbd "C-c w <up>") 'wind-above)

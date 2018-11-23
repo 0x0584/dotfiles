@@ -5,13 +5,13 @@
 ; but if you add other options, the next Save Settings will not save them.
 ; Use a shortcut, an @indirection file, or a .bat file instead.
 ;
--saveDate 1499407833
--whitePieceColor #FFFFCC
+-saveDate 1536261042
+-whitePieceColor #ffffff
 -blackPieceColor #202020
 -lightSquareColor #C8C365
 -darkSquareColor #77A26D
--highlightSquareColor #FFFF00
--premoveHighlightColor #FF0000
+-highlightSquareColor #ffff00
+-premoveHighlightColor #ff0000
 -movesPerSession 40
 -variations true
 -appendPV true
@@ -33,7 +33,7 @@
 -sweepPromotions true
 -monoMouse false
 -timeDelay 1
--timeControl "5"
+-timeControl "20"
 -seekGraph true
 -autoRefresh false
 -autoBox true
@@ -42,12 +42,12 @@
 -onlyOwnGames false
 -monoMode false
 -showCoords true
--showThinking false
+-showThinking true
 -ponderNextMove true
 -periodicUpdates true
 -popupExitMessage true
 -popupMoveErrors false
--boardSize Average
+-boardSize Medium
 -alwaysOnTop false
 -autoCallFlag false
 -autoComment false
@@ -67,7 +67,7 @@
 -premoveBlackText ""
 -icsAlarm false
 -icsAlarmTime 5000
--animateMoving true
+-animateMoving false
 -animateSpeed 10
 -animateDragging true
 -blindfold false
@@ -101,7 +101,7 @@
 -soundIcsUnfinished ""
 -soundIcsAlarm "penalty.wav"
 -disguisePromotedPieces true
--saveSettingsOnExit true
+-saveSettingsOnExit false
 -icsMenu {Give me;ptell Please give me $input;
 Avoid;ptell Please don't let him get $input;
 Q;$add a Queen $input;
@@ -134,23 +134,25 @@ Open Chat Box (name);$chat;
 "kc" -icshost alanimus.com -icshelper timeseal
 }
 -recentEngines 4
--recentEngineList {GNU Chess
+-recentEngineList {fairymax
 }
--firstChessProgramNames {"GNU Chess" -fcp gnuchess
-fairymax
+-firstChessProgramNames {fairymax
 "Fruit 2.1" -fcp fruit -fUCI
 "Crafty" -fcp crafty
+"GNU Chess" -fcp gnuchess
+shamax
+maxqi
 }
--themeNames {"native" -ubt false -pid "" -trueColors false -flipBlack false -overrideLineGap -1
-"classic" -ubt false -lsc #c8c365 -dsc #77a26d -pid "" -wpc #ffffcc -bpc #202020 -hsc #ffff00 -phc #ff0000 -overrideLineGap -1 -flipBlack false
-"wood" -ubt true -lbtf ~~/themes/textures/wood_l.png -dbtf ~~/themes/textures/wood_d.png -pid ""  -hsc #ffff00 -phc #ff0000 -overrideLineGap 1
-"diagram" -ubt true -lbtf "" -dbtf ~~/themes/textures/hatch.png -lsc #ffffff -wpc #ffffff -bpc #000000 -pid "" -hsc #808080 -phc #808080 -trueColors false -overrideLineGap 1
-"icy" -ubt false -lsc #ffffff -dsc #80ffff -pid "" -wpc #f1f8f8 -bpc #202020 -hsc #0000ff -phc #ff0000
-# ORIENTAL THEMES
-"shogi" -ubt true  -lbtf ~~/themes/textures/wood_d.png -dbtf ~~/themes/textures/wood_d.png -pid ~~/themes/shogi -trueColors true -hsc #ffff00 -phc #0080ff -overrideLineGap 1
-"xiangqi" -ubt true  -lbtf ~~/themes/textures/xqboard-9x10.png -dbtf ~~/themes/textures/xqboard-9x10.png -pid ~~/themes/xiangqi -trueColors true -hsc #ffff00 -phc #ff0000 -overrideLineGap 0
-"chu shogi" -ubt false -lsc #ff8040 -dsc #ff8040 -pid ~~/themes/chu -trueColors true -hsc #0000ff -phc #00ff00
-# end
+-themeNames {[Event "DSB-18.Kongress"]
+[Site "Breslau"]
+[Date "1912.??.??"]
+[Round "14"]
+[White "Cohn, Erich"]
+[Black "Barasz, Zsigmond"]
+[Result "1/2-1/2"]
+[WhiteElo "0"]
+[BlackElo "0"]
+[ECO "D02"]
 }
 -showButtonBar true
 -pgnExtendedInfo true
@@ -171,7 +173,7 @@ fairymax
 -defaultFrcPosition -1
 -gameListTags "eprd"
 -saveOutOfBookInfo true
--showEvalInMoveHistory false
+-showEvalInMoveHistory true
 -evalHistColorWhite #FFFFB0
 -evalHistColorBlack #AD5D3D
 -highlightMoveWithArrow true
@@ -182,7 +184,7 @@ fairymax
 -adapterCommand 'polyglot -noini -ec "%fcp" -ed "%fd" -uci NalimovCache=%defaultCacheSizeEGTB -pg ShowTbHits=true'
 -uxiAdapter ""
 -polyglotDir ""
--usePolyglotBook false
+-usePolyglotBook true
 -polyglotBook ""
 -bookDepth 12
 -bookVariation 50
@@ -235,41 +237,41 @@ fairymax
 -analysisBell 0
 -timeOddsMode 0
 -keepLineBreaksICS false
--winWidth 445
--winHeight 529
--x 812
--y 58
+-winWidth 565
+-winHeight 660
+-x 53
+-y 27
 -icsUp false
--icsX 2147482836
--icsY 2147483590
+-icsX 2147483595
+-icsY 2147483621
 -icsW -2147483648
 -icsH -2147483648
--commentX 2147482836
--commentY 2147483590
--commentW -2147483648
--commentH -2147483648
--tagsX -804
--tagsY -30
--tagsW 806
--tagsH 348
--gameListX 2147482836
--gameListY 2147483590
--gameListW 500
--gameListH 300
--slaveX 2147482836
--slaveY 2147483590
+-commentX 0
+-commentY 382
+-commentW 606
+-commentH 238
+-tagsX 621
+-tagsY 266
+-tagsW 362
+-tagsH 248
+-gameListX 573
+-gameListY 107
+-gameListW 604
+-gameListH 309
+-slaveX 2147483595
+-slaveY 2147483621
 -moveHistoryUp false
--moveHistoryX 2147482836
--moveHistoryY 2147483590
--moveHistoryW -2147483648
--moveHistoryH -2147483648
+-moveHistoryX 340
+-moveHistoryY 808
+-moveHistoryW 404
+-moveHistoryH 74
 -evalGraphUp false
--evalGraphX 2147482836
--evalGraphY 2147483590
--evalGraphW 300
--evalGraphH 150
+-evalGraphX 702
+-evalGraphY 313
+-evalGraphW 521
+-evalGraphH 275
 -engineOutputUp false
--engineOutputX 2147482836
--engineOutputY 2147483590
--engineOutputW -2147483648
--engineOutputH -2147483648
+-engineOutputX 158
+-engineOutputY 524
+-engineOutputW 504
+-engineOutputH 269

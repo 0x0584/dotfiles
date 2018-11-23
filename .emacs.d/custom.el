@@ -80,6 +80,9 @@
    (quote
     ("f11e219c9d043cbd5f4b2e01713c2c24a948a98bed48828dc670bd64ae771aa1" default)))
  '(fci-rule-color "#c7c7c7")
+ '(find-grep-options "-q --color=auto")
+ '(find-ls-option (quote ("-ls" . "-dilsbF")))
+ '(find-ls-subdir-switches "-albF")
  '(flycheck-clang-include-path
    (quote
     ("../../include" "../include" "../util" "../utils" "../lib" "../libs")))
@@ -87,6 +90,7 @@
  '(line-number-mode nil)
  '(linum-format (quote dynamic))
  '(magit-diff-refine-hunk t)
+ '(magit-diff-section-arguments (quote ("--ignore-space-change" "--no-ext-diff")))
  '(magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256")))
  '(menu-bar-mode nil)
  '(nrepl-message-colors
