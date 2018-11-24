@@ -1,10 +1,10 @@
 include init.mk
 
 # DEFAULT PROGRAM NAME
-EXEC =				# EXEC NAME
+EXEC = scmin
 
 # DEFAULT PROGRAM ARGUMENTS
-ARGS =				# ARG LIST
+ARGS = "(+ 4 5)"
 
 all: main
 	@echo  "done.\n"

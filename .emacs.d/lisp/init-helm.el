@@ -14,7 +14,9 @@
 ;;
 ;;; Code:
 
+(require 'helm)
 (require 'helm-config)
+
 (setq helm-M-x-fuzzy-match t)
 
 (helm-mode 1)

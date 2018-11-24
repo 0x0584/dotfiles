@@ -322,4 +322,18 @@ Version 2017-03-12"
 	   (switch-to-buffer buffer-b)
 	   (other-window 1)))))
 
+(require 'desktop+)
+(defun load-session (name)
+  "Load the session saved under NAME using `desktop+-mode'."
+  (interactive
+   (list
+    (completing-read
+     "Desktop name: "
+     (remove "."
+	     (remove ".."
+		     (directory-files desktop+-base-dir))))))
+  (desktop+-load name)
+  (other-buffer "*Warnings*"))
+
+
 ;;; defuns.el ends here

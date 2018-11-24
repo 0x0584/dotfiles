@@ -14,6 +14,8 @@
 ;;
 ;;; Code:
 
+(require 'auto-complete)
+
 (setq ac-auto-start 3)
 (setq ac-dwim t)
 

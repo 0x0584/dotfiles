@@ -59,6 +59,7 @@
 
 (add-to-list 'god-exempt-major-modes 'dired-mode)
 (add-hook 'overwrite-mode-hook 'god-toggle-on-overwrite)
+(add-hook 'text-mode 'toggle-truncate-lines)
 
 (provide 'init-other)
 ;;; init-other.el ends here

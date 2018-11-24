@@ -168,4 +168,6 @@
 (global-set-key (kbd "C-{") 'backward-page)
 (global-set-key (kbd "C-}") 'forward-page)
 
-;;; keybindings.el ends here
+(global-set-key (kbd "C-c \\") 'hide/show-comments-toggle)
+
+;;; kbds.el ends here

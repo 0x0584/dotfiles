@@ -16,41 +16,32 @@
 
 (require 'iimage)
 (require 'org-alert)
+(require 'faces)
+(require 'org-clock)
 
 (setq alert-default-style 'libnotify)
 (setq org-alert-interval (* 60 60))	; each hour
-
-;; Org-mode Configuration
 (setq org-todo-keywords
       '((sequence "TODO(t)" "IN-PROGRESS(s!)" "EXAM" "TO-BUY(b!)"
 		  "MEETING(m!)" "|" "PENDING(p!)" "DONE(d!/@)"
 		  "CANCELED(c!/!)" "UNDER-REVISING(u)" "|" "HOLY-DAY")))
-
 (setq org-agenda-files (list "~/orged/agenda"))
 (setq org-agenda-skip-scheduled-if-done t)
-
 (setq org-preview-latex-default-process 'dvisvgm)
-
 (setq org-format-latex-options
       (plist-put org-format-latex-options
 		 :scale 1.3))
-
 (setq org-return-follows-link t)
 (setq org-src-fontify-natively t)
-
 (setq image-file-name-extensions
       (quote
        ("png" "jpeg" "jpg" "gif" "tiff" "tif"
 	"xbm" "xpm" "pbm" "pgm" "ppm" "pnm"
 	"svg" "pdf" "bmp")))
-
 (setq org-image-actual-width 400)
-
-(setq org-imagemagick-display-command
+(defvar org-imagemagick-display-command
       "convert -density 600 \"%s\" -thumbnail \"%sx%s>\" \"%s\"")
-
 (setq org-image-actual-width (/ (display-pixel-width) 3))
-
 (setq org-agenda-custom-commands
       '(("x" "Exams"
 	 ;; agenda with only items tagged event
@@ -59,27 +50,17 @@
 		      (org-deadline-warning-days 0)))))))
 
 (setq org-clock-persist 'history)
-
-;; Agenda clock report parameters
 (setq org-agenda-clockreport-parameter-plist
       '(:link t :maxlevel 6 :fileskip0 t :compact t :narrow 60 :score 0))
-
-;; If idle for more than 15 minutes, resolve the things by asking what to do
-;; with the clock time
 (setq org-clock-idle-time 15)
-
-;; global Effort estimate values
 (setq org-global-properties
       '(("Effort_ALL" .
 	 "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")))
 ;;	  1    2    3	 4    5	   6	7    8	  9    0
-;; These are the hotkeys ^^
-;; Set default column view headings: Task Priority Effort Clock_Summary
 (setq org-columns-default-format
       "%50ITEM(Task) %2PRIORITY %10Effort(Effort){:} %10CLOCKSUM")
-
-(setq org-latex-listings 'minted)
-(setq org-latex-pdf-process
+(defvar org-latex-listings 'minted)
+(defvar org-latex-pdf-process
       '((concat "pdflatex -shell-escape -interaction "
 		"nonstopmode -output-directory %o %f")))
 
