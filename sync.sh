@@ -2,7 +2,6 @@
 #
 # Sync all the dotfiles across the system.
 #
-# TODO: add `import from` and `export to` option
 
 if [ "$1" == "there" ]; then
     from="."
@@ -19,7 +18,6 @@ fi
 
 case "$choice" in
     y|Y )
-
 	# Emacs is my main programming envirenment.
 	echo "Syncing Emacs configuration.."
 	cp -TRv	 "$from/.emacs.d/lisp/" "$to/.emacs.d/lisp/"

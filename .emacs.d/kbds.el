@@ -66,8 +66,8 @@
 
 (global-set-key (kbd "C-c y") 'popup-kill-ring)
 
-(global-set-key (kbd "C-c b") 'recover-this-file)
-(global-set-key (kbd "C-c x") 'man)
+(global-set-key (kbd "C-c r") 'recover-this-file)
+(global-set-key (kbd "C-c m") 'man)
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
@@ -90,25 +90,24 @@
 (global-set-key (kbd "M-<up>") 'move-line-up)
 (global-set-key (kbd "M-<down>") 'move-line-down)
 
-(global-set-key (kbd "C-c f") 'indent-c-buffer)
-
 (global-set-key (kbd "C-c w <down>") 'wind-below)
 (global-set-key (kbd "C-c w <up>") 'wind-above)
 (global-set-key (kbd "C-c w <left>") 'wind-left)
 (global-set-key (kbd "C-c w <right>") 'wind-right)
-
-
-;;
+(global-set-key (kbd "C-c w o") 'switch-window-orientation)
+(global-set-key (kbd "C-c w s") 'swap-buffer)
+(global-set-key (kbd "C-c v") 'safe-revert-buffer)
 (global-set-key (kbd "S-M-<down>") 'windmove-down)
-
 (global-set-key (kbd "S-M-<left>") 'windmove-left)
 (global-set-key (kbd "S-M-<right>") 'windmove-right)
 (global-set-key (kbd "S-M-<up>") 'windmove-up)
-
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+
+(global-set-key (kbd "C-x <left>") 'previous-code-buffer)
+(global-set-key (kbd "C-x <right>") 'next-code-buffer)
 
 (global-set-key (kbd "S-C-l") 'linum-mode)
 (global-set-key (kbd "C-:") 'linum-relative-mode)
@@ -130,7 +129,8 @@
 	    (local-set-key (kbd "C-c <up>")  'hs-hide-block)
 	    (local-set-key (kbd "C-c a <up>")	 'hs-hide-all)
 	    (local-set-key (kbd "C-c a <down>")	 'hs-show-all)
-	    (hs-minor-mode t)))
+	    (hs-minor-mode t)
+	    (local-set-key (kbd "C-c f") 'indent-c-buffer)))
 
 (dolist (hook '(c-mode-hook c++-mode-hook))
   (add-hook hook
@@ -149,13 +149,11 @@
 (global-set-key (kbd "C-x \\") 'wordnut-lookup-current-word)
 (global-set-key (kbd "C-x <f12>") 'helm-tldr)
 
-
 (global-set-key (kbd "C-x C-1") 'delete-other-windows)
 (global-set-key (kbd "C-x C-2") 'split-window-below)
 (global-set-key (kbd "C-x C-3") 'split-window-right)
 (global-set-key (kbd "C-x C-0") 'delete-window)
 (global-set-key (kbd "C-h !") 'devdocs-search)
-(global-set-key (kbd "C-c s") 'swap-buffer)
 
 (global-set-key (kbd "C-c [") 'sr-speedbar-close)
 (global-set-key (kbd "C-c ]") 'sr-speedbar-open)

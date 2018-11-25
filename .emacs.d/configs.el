@@ -78,6 +78,10 @@
 ;; Better that a sound, right?
 (setq visible-bell t)
 
+(put 'narrow-to-page 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
 (defalias 'wind-below 'my-split-root-window-below)
 (defalias 'wind-above 'my-split-root-window-above)
 (defalias 'wind-right 'my-split-root-window-right)
