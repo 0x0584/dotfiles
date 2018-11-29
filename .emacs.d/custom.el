@@ -63,6 +63,7 @@
  '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
  '(blink-cursor-mode t)
+ '(blink-matching-paren (quote jump))
  '(chess-stockfish-path /usr/games/stockfish)
  '(company-quickhelp-color-background "#b0b0b0")
  '(company-quickhelp-color-foreground "#232333")
@@ -101,6 +102,9 @@
    (quote
     (chess zone-nyan zone-rainbow zone-select zweilight-theme zenburn-theme zeal-at-point xkcd wordnut which-key websocket web-mode web-beautify volatile-highlights vline vkill visual-regexp undo-tree tuareg tldr telephone-line tao-theme tangotango-theme tango-plus-theme tango-2-theme symon sx swiper swap-buffers svg-clock super-save ssh sr-speedbar spaces spacemacs-theme sotlisp smex smartparens smart-mode-line-powerline-theme showkey show-css rvm runtests ruby-tools ruby-refactor ruby-hash-syntax ruby-factory ruby-electric ruby-dev ruby-compilation ruby-block rubocop rsense rotate robe restart-emacs rainbow-delimiters rainbow-blocks quickrun quack popwin popup-switcher popup-kill-ring popup-complete plsql plsense plantuml-mode php-eldoc php+-mode persp-mode perl6-mode pacmacs ox-pandoc orgtbl-ascii-plot org-webpage org-web-tools org-ref org-readme org-preview-html org-pandoc org-page org-gnome-calendar org-gnome org-download org-doing org-commentary org-beautify-theme org-alert omniref nimbus-theme nhexl-mode nasm-mode names mysql-to-org minor-mode-hack memory-usage markdown-mode+ map-regexp magithub magit-todos magit-rockstar magit-org-todos magit-find-file magit-filenotify magit-annex magic-latex-buffer linum-relative latexdiff latex-preview-pane langtool lang-refactor-perl julia-shell julia-repl inkpot-theme impatient-mode iedit hl-sexp highlight-quoted highlight-operators highlight-escape-sequences highlight-blocks highlight hide-comnt hexrgb helm-themes helm-spotify-plus helm-rubygems-org helm-rubygems-local helm-robe helm-perldoc helm-make helm-gtags helm-gitignore helm-git-grep helm-git-files helm-git helm-flymake helm-dictionary helm-dash helm-css-scss helm-company grandshell-theme gotham-theme god-mode gnuplot gnu-apl-mode gited git-timemachine geben fzf fuzzy function-args font-lock+ flymake-ruby flymake-less flymake-json flymake-jslint flymake-jshint flymake-css flylisp flycheck-perl6 flycheck-julia flycheck-cstyle flycheck-css-colorguard flycheck-clangcheck emojify-logos electric-operator eldoc-overlay eldoc-eval edit-server djvu disaster diminish diffview devdocs desktop-menu desktop+ define-word css-eldoc csharp-mode company-inf-ruby clues-theme checkbox c-eldoc boxquote bm bind-key benchmark-init awk-it auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex ascii-art-to-unicode anything anti-zenburn-theme ample-theme ace-popup-menu ac-slime ac-php ac-ispell ac-inf-ruby ac-html-csswatcher ac-html-bootstrap ac-html ac-helm ac-etags ac-clang ac-c-headers)))
  '(pdf-view-midnight-colors (quote ("#232333" . "#c7c7c7")))
+ '(quack-programs
+   (quote
+    ("mzscheme" "bigloo" "csi" "csi -hygienic" "gosh" "gracket" "gsi" "gsi ~~/syntax-case.scm -" "guile" "kawa" "mit-scheme" "racket" "racket -il typed/racket" "rs" "scheme" "scheme48" "scsh" "sisc" "stklos" "sxi")))
  '(safe-local-variable-values (quote ((nameless-current-name . "rm"))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
@@ -158,6 +162,7 @@
  '(org-level-1 ((t (:inherit outline-1 :weight bold))))
  '(org-level-2 ((t (:inherit outline-2 :slant italic))))
  '(org-tag ((t (:box (:line-width 2 :color "grey75" :style pressed-button) :slant normal :weight bold))))
+ '(speedbar-selected-face ((t (:foreground "orange" :slant italic))))
  '(term-color-blue ((t (:background "dark slate blue" :foreground "dark slate blue")))))
 
 ;;; custom.el ends here

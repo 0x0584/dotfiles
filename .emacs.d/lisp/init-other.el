@@ -42,12 +42,16 @@
 (zone-select-add-program 'zone-nyan-preview)
 (zone-select-add-program 'zone-rainbow)
 
+(defun svg-clock-when-zone ()
+  "Used with zone."
+  (svg-clock)
+  (backward-char))
+
 (defun zone-svg-clock ()
   "Zone out with svg clock."
   (interactive)
-  (let ((zone-programs [svg-clock]))
-    (zone)
-    (other-window)))
+  (let ((zone-programs [svg-clock-when-zone]))
+    (zone)))
 
 (zone-select-add-program 'zone-svg-clock)
 

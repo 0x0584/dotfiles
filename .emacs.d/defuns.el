@@ -63,7 +63,6 @@
   (interactive)
   (insert (format-time-string "%m/%d/%Y")))
 
-;; TODO: find a way to call this regularly after a specific delay
 (defun create-etags ()
   "Create TAGS file based on source code found in the current directory."
   (interactive)

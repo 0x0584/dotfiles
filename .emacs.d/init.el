@@ -286,3 +286,6 @@ Return a list of installed PACKAGES or nil for every skipped package."
 
 (provide 'init)
 ;;; init.el ends here
+(put 'narrow-to-page 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

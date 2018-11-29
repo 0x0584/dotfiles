@@ -44,6 +44,7 @@
 	 (cperl-get-help))))
 
 (rainbow-delimiters-mode 1)
+(save-place-mode 1)
 
 ;; Hooks
 (add-hook 'after-init-hook #'global-flycheck-mode)
