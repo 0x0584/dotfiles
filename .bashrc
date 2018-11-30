@@ -66,17 +66,17 @@ fi
 # if the command-not-found package is installed, use it
 # if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found/command-not-found ]; then
 #     function command_not_found_handle {
-# 	# check because c-n-f could've been removed in the meantime
-#         if [ -x /usr/lib/command-not-found ]; then
-# 	    /usr/lib/command-not-found -- "$1"
-#             return $?
-#         elif [ -x /usr/share/command-not-found/command-not-found ]; then
-# 	    /usr/share/command-not-found/command-not-found -- "$1"
-#             return $?
-# 	else
-# 	    printf "%s: command not found\n" "$1" >&2
-# 	    return 127
-# 	fi
+#	# check because c-n-f could've been removed in the meantime
+#	  if [ -x /usr/lib/command-not-found ]; then
+#	    /usr/lib/command-not-found -- "$1"
+#	      return $?
+#	  elif [ -x /usr/share/command-not-found/command-not-found ]; then
+#	    /usr/share/command-not-found/command-not-found -- "$1"
+#	      return $?
+#	else
+#	    printf "%s: command not found\n" "$1" >&2
+#	    return 127
+#	fi
 #     }
 # fi
 
@@ -92,32 +92,32 @@ bash_prompt_command() {
     local pwdoffset=$(( ${#NEW_PWD} - pwdmaxlen ))
     if [ ${pwdoffset} -gt "0" ]
     then
-        NEW_PWD=${NEW_PWD:$pwdoffset:$pwdmaxlen}
-        NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
+	NEW_PWD=${NEW_PWD:$pwdoffset:$pwdmaxlen}
+	NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
     fi
     echo ""
 }
 
 bash_prompt() {
     case $TERM in
-     xterm*|rxvt*)
-         local TITLEBAR='\[\033]0;\u:${NEW_PWD}\007\]'
-          ;;
-     *)
-         local TITLEBAR=""
-          ;;
+	xterm*|rxvt*)
+	    local TITLEBAR='\[\033]0;\u:${NEW_PWD}\007\]'
+	    ;;
+	*)
+	    local TITLEBAR=""
+	    ;;
     esac
-    local NONE="\[\033[0m\]"    # unsets color to term's fg color
+    local NONE="\[\033[0m\]"	# unsets color to term's fg color
 
     # regular colors
-    local K="\[\033[0;30m\]"    # black
-    local R="\[\033[0;31m\]"    # red
-    local G="\[\033[0;32m\]"    # green
-    local Y="\[\033[0;33m\]"    # yellow
-    local B="\[\033[0;34m\]"    # blue
-    local M="\[\033[0;35m\]"    # magenta
-    local C="\[\033[0;36m\]"    # cyan
-    local W="\[\033[0;37m\]"    # white
+    local K="\[\033[0;30m\]"	# black
+    local R="\[\033[0;31m\]"	# red
+    local G="\[\033[0;32m\]"	# green
+    local Y="\[\033[0;33m\]"	# yellow
+    local B="\[\033[0;34m\]"	# blue
+    local M="\[\033[0;35m\]"	# magenta
+    local C="\[\033[0;36m\]"	# cyan
+    local W="\[\033[0;37m\]"	# white
 
     # emphasized (bolded) colors
     local EMK="\[\033[1;30m\]"
@@ -139,10 +139,10 @@ bash_prompt() {
     local BGC="\[\033[46m\]"
     local BGW="\[\033[47m\]"
 
-    local UC=$W                 # user's color
+    local UC=$W			# user's color
     local PROMP="%"
 
-    [ $UID -eq "0" ] && UC=$R   # root's color
+    [ $UID -eq "0" ] && UC=$R	# root's color
     [ $UID -eq "0" ] && PROMP="#"
 
     PS1="${TITLEBAR}${BGR}\T${UC} ${EMG}:: ${EMK}${UC}\u${EMK}@${UC}\h ${EMG}::${NONE} (\j \#)\n[ ${EMB}\${NEW_PWD} ${UC}]${UC} ${PROMP}${NONE} "
@@ -174,7 +174,7 @@ alias valk='valkyrie'
 
 mkcdir () {
     mkdir -p -- "$1" &&
-      cd -P -- "$1"
+	cd -P -- "$1"
 }
 
 export EDITOR='emacsclient -t'
