@@ -9,30 +9,30 @@
 ;;
 ;;; Commentary:
 ;;
-;;    Emacs Configuration
+;;	  Emacs Configuration
 ;;
 ;;; Summary:
 ;;
-;;    Load modes.el -- Modes configurations
-;;    Load defuns.el -- Useful Emacs Lisp functions
-;;    Load configs.el -- Some addtional Emacs configurations
-;;    Load keybindings.el -- My Emacs keybindings
-;;    Load custom.el -- customized variables and faces
-;;    Load beta.el -- Anything that I would test
+;;	  Load modes.el -- Modes configurations
+;;	  Load defuns.el -- Useful Emacs Lisp functions
+;;	  Load configs.el -- Some addtional Emacs configurations
+;;	  Load keybindings.el -- My Emacs keybindings
+;;	  Load custom.el -- customized variables and faces
+;;	  Load beta.el -- Anything that I would test
 ;;
 ;; This is configuration is done after working with a messy
 ;; Emacs configuration for three years.	 Now after dealing with
 ;; Emacs Lisp for a while, I think I can handle this, as they said:
 ;;
-;;   - You would need to configure your Emacs all over someday.
+;;	 - You would need to configure your Emacs all over someday.
 ;;
 ;;; Variables defined here:
 ;;
-;;     `*emacs-load-start*'
+;;	   `*emacs-load-start*'
 ;;
 ;;; Functions defined here:
 ;;
-;;     `display-loading-time', `time-to-ms', `ensure-package-installed'
+;;	   `display-loading-time', `time-to-ms', `ensure-package-installed'
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -60,17 +60,17 @@
 (package-initialize)
 
 (setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-	("melpa" . "http://melpa.milkbox.net/packages/")))
+	  '(("gnu" . "http://elpa.gnu.org/packages/")
+		("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
 Return a list of installed PACKAGES or nil for every skipped package."
   (mapcar
    (lambda (package)
-     (unless (package-installed-p package)
-       (package-refresh-contents)
-       (package-install package)))
+	 (unless (package-installed-p package)
+	   (package-refresh-contents)
+	   (package-install package)))
    packages))
 
 (ensure-package-installed
@@ -279,11 +279,11 @@ Return a list of installed PACKAGES or nil for every skipped package."
 (let ((lisp-dir "~/.emacs.d/lisp"))
   (add-to-list 'load-path lisp-dir)
   (mapc (lambda (fname)
-	  (let ((feat (intern (file-name-base fname))))
-		(message "Feature '%s' loaded in %.2fs" feat
-			 (benchmark-elapse (require feat fname)))
-	      (require feat fname)))
-	(directory-files lisp-dir t "\\.el")))
+		  (let ((feat (intern (file-name-base fname))))
+			(message "Feature '%s' loaded in %.2fs" feat
+					 (benchmark-elapse (require feat fname)))
+			(require feat fname)))
+		(directory-files lisp-dir t "\\.el")))
 
 (provide 'init)
 ;;; init.el ends here

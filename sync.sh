@@ -4,24 +4,25 @@
 #
 
 if [ "$1" == "there" ]; then
-    from="."
-    to="$HOME";
-    str="from here to there"
+	from="."
+	to="$HOME";
+	str="from here to there"
 
-    read -p "$str Continue (Y/n)? " choice
+	read -p "$str Continue (Y/n)? " choice
 else
-    from="$HOME"
-    to="."
-    str="from there to here"
-    choice="y"
+	from="$HOME"
+	to="."
+	str="from there to here"
+	choice="y"
 fi
 
 case "$choice" in
-    y|Y )
+	y|Y )
 	# Emacs is my main programming envirenment.
 	echo "Syncing Emacs configuration.."
 	cp -TRv	 "$from/.emacs.d/lisp/" "$to/.emacs.d/lisp/"
 	cp -v "$from/.emacs.d/init.el" "$to/.emacs.d/init.el"
+	cp -v "$from/.emacs.d/configs.el" "$to/.emacs.d/configs.el"
 	cp -v "$from/.emacs.d/defuns.el" "$to/.emacs.d/defuns.el"
 	cp -v "$from/.emacs.d/modes.el" "$to/.emacs.d/modes.el"
 	cp -v "$from/.emacs.d/custom.el" "$to/.emacs.d/custom.el"
@@ -44,6 +45,6 @@ case "$choice" in
 	cp -v "$from/.Xdefaults" "$to/.Xdefaults" 2>/dev/null
 	cp -TRv "$from/.templates" "$to/.templates"
 	echo "";;
-    n|N ) echo "good choice";;
-    * ) echo "invalid";;
+	n|N ) echo "good choice";;
+	* ) echo "invalid";;
 esac

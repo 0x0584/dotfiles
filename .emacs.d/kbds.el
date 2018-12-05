@@ -9,13 +9,13 @@
 ;;
 ;;; Commentary:
 ;;
-;;   Some Useful Emacs Keybindings
+;;	 Some Useful Emacs Keybindings
 ;;
 ;;; Summary:
 ;;
-;;   Describe loaded files.
-;;   Describe loaded modes.
-;;   Describe load time.
+;;	 Describe loaded files.
+;;	 Describe loaded modes.
+;;	 Describe load time.
 ;;
 ;;; User options defined here:
 ;;
@@ -124,21 +124,21 @@
 (global-set-key (kbd "C-h z") 'zeal-at-point)
 
 (add-hook 'c-mode-common-hook
-	  (lambda()
-	    (local-set-key (kbd "C-c <down>") 'hs-show-block)
-	    (local-set-key (kbd "C-c <up>")  'hs-hide-block)
-	    (local-set-key (kbd "C-c a <up>")	 'hs-hide-all)
-	    (local-set-key (kbd "C-c a <down>")	 'hs-show-all)
-	    (hs-minor-mode t)
-	    (local-set-key (kbd "C-c f") 'indent-c-buffer)))
+		  (lambda()
+			(local-set-key (kbd "C-c <down>") 'hs-show-block)
+			(local-set-key (kbd "C-c <up>")	 'hs-hide-block)
+			(local-set-key (kbd "C-c a <up>")	 'hs-hide-all)
+			(local-set-key (kbd "C-c a <down>")	 'hs-show-all)
+			(hs-minor-mode t)
+			(local-set-key (kbd "C-c f") 'indent-c-buffer)))
 
 (dolist (hook '(c-mode-hook c++-mode-hook))
   (add-hook hook
-	    (lambda ()
-	      (local-set-key (kbd "C-h d")
-			     (lambda ()
-			       (interactive)
-			       (manual-entry (current-word)))))))
+			(lambda ()
+			  (local-set-key (kbd "C-h d")
+							 (lambda ()
+							   (interactive)
+							   (manual-entry (current-word)))))))
 
 (global-set-key (kbd "M-[") 'select-line)
 (global-set-key (kbd "C-c h") 'highlight-blocks-mode)

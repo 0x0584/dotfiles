@@ -9,28 +9,28 @@
 ;;
 ;;; Commentary:
 ;;
-;;   Some Useful Emacs Functions
+;;	 Some Useful Emacs Functions
 ;;
 ;;; Summary:
 ;;
-;;    All function used elsewhere are defined here.
+;;	  All function used elsewhere are defined here.
 ;;
 ;;; Interactive functions defined here:
-;;     `create-tags', `next-code-buffer', `named-term',
-;;     `named-term-below', `move-line', `move-line-up',
-;;     `move-line-down', `kill-other-buffers',
-;;     `find-overlays-specifying', `emacs-quit-confirm',
-;;     `de/highlight-line', `delete-nl-spaces',
-;;     `delete-nl-spaces-find-file-hook', `code-buffer',
-;;     `browse-file-directory', `save-buffer-if-modified',
-;;     `safe-revert-buffer', `switch-window-orientation',
-;;     `split-current-window', `select-line', `swap-buffer',
-;;     `xah-syntax-color-hex', `remove-highlight',
-;;     `previous-code-buffer'
+;;	   `create-tags', `next-code-buffer', `named-term',
+;;	   `named-term-below', `move-line', `move-line-up',
+;;	   `move-line-down', `kill-other-buffers',
+;;	   `find-overlays-specifying', `emacs-quit-confirm',
+;;	   `de/highlight-line', `delete-nl-spaces',
+;;	   `delete-nl-spaces-find-file-hook', `code-buffer',
+;;	   `browse-file-directory', `save-buffer-if-modified',
+;;	   `safe-revert-buffer', `switch-window-orientation',
+;;	   `split-current-window', `select-line', `swap-buffer',
+;;	   `xah-syntax-color-hex', `remove-highlight',
+;;	   `previous-code-buffer'
 ;;
 ;;; Non-interactive functions defined here:
 ;;
-;;     `insert-time', `insert-date'
+;;	   `insert-time', `insert-date'
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -69,27 +69,27 @@
   (interactive)
   (eshell-command
    (concat "find . -name '*.c' -print -or -name '*.h' -print"
-	   " |	xargs etags")))
+		   " |	xargs etags")))
 
 (defun save-buffer-if-modified (&optional buffer)
   "Return t if the BUFFER was modified and saved."
   (interactive)
   (if (not (buffer-modified-p buffer))
-      t
-    (and (not (ding))
-	 (y-or-n-p (concat (buffer-name buffer)
-			   " is modified, save it? "))
-	 (not (save-buffer buffer)))))
+	  t
+	(and (not (ding))
+		 (y-or-n-p (concat (buffer-name buffer)
+						   " is modified, save it? "))
+		 (not (save-buffer buffer)))))
 
 (defun code-buffer (next)
   "Simply, avoiding buffers that start with asterisk.
 If NEXT is t we call `next-buffer' otherwise we call `previous-buffer'."
   (interactive)
   (let ((bread-crumb (buffer-name)))
-    (if (eq next 't) (next-buffer) (previous-buffer))
-    (while (and (string-match-p "^\*" (buffer-name))
-		(not (equal bread-crumb (buffer-name))))
-      (if (eq next 't) (next-buffer) (previous-buffer)))))
+	(if (eq next 't) (next-buffer) (previous-buffer))
+	(while (and (string-match-p "^\*" (buffer-name))
+				(not (equal bread-crumb (buffer-name))))
+	  (if (eq next 't) (next-buffer) (previous-buffer)))))
 
 (defun next-code-buffer ()
   "See `code-buffer'."
@@ -105,41 +105,41 @@ If NEXT is t we call `next-buffer' otherwise we call `previous-buffer'."
   "Reverts a buffer, and only ask to save the buffer if it was modified."
   (interactive)
   (when (save-buffer-if-modified)
-    (revert-buffer t t t)
-    (message "buffer is reverted")))
+	(revert-buffer t t t)
+	(message "buffer is reverted")))
 
 (defun browse-file-directory ()
   "Open the current file's directory however the OS would."
   (interactive)
   (if default-directory
-      (browse-url-of-file
-       (expand-file-name default-directory))
-    (error "No `default-directory' to open")))
+	  (browse-url-of-file
+	   (expand-file-name default-directory))
+	(error "No `default-directory' to open")))
 
 (defun kill-other-buffers ()
   "Kill all buffers but the current one.
 If some buffer are modified, ask to save them."
   (interactive)
   (dolist (buffer (buffer-list))
-    (unless (or (eql buffer (current-buffer))
-		 (not (buffer-file-name buffer)))
-      (if (save-buffer-if-modified buffer)
-	  (kill-buffer buffer)))))
+	(unless (or (eql buffer (current-buffer))
+				(not (buffer-file-name buffer)))
+	  (if (save-buffer-if-modified buffer)
+		  (kill-buffer buffer)))))
 
 (defun move-line (n)
   "Move the current line up or down by N lines."
   (interactive "p")
   (let ((col (current-column)) (start '()) (end '()))
-    (beginning-of-line)
-    (setq start (point))
-    (end-of-line)
-    (forward-char)			; get the '\n' too
-    (setq end (point))
-    (let ((line-text (delete-and-extract-region start end)))
-      (forward-line n)
-      (insert line-text)
-      (forward-line -1)
-      (forward-char col))))
+	(beginning-of-line)
+	(setq start (point))
+	(end-of-line)
+	(forward-char)			; get the '\n' too
+	(setq end (point))
+	(let ((line-text (delete-and-extract-region start end)))
+	  (forward-line n)
+	  (insert line-text)
+	  (forward-line -1)
+	  (forward-char col))))
 
 (defun move-line-up (&optional n)
   "Move the current line up by N lines."
@@ -159,18 +159,19 @@ Ask to say the buffer if modified."
   (goto-char (point-min))
   (push-mark (point-max) nil t)
   (when (save-buffer-if-modified)
-    (universal-argument)
-    (shell-command-on-region
-     (point-min)
-     (point-max)
-     (concat "indent -nbad -bap -bbo -nbc -br -brs "
-	     "-brf -c33 -cd33 -ncdb -ce -ci4 -cli0 "
-	     "-cp33 -cs -d0 -di4 -nfc1 -nfca -hnl "
-	     "-i4 -ip0 -l75 -lp -npcs -nprs -npsl "
-	     "-saf -sai -saw -nsc -nsob -nss -ppi2 "
-	     "-pmt ")
-     (buffer-name))
-    (save-buffer-if-modified)))
+	(universal-argument)
+	(shell-command-on-region
+	 (point-min)
+	 (point-max)
+	 (concat "indent -nbad -bap -bbo -nbc -br -brs "
+			 "-brf -c33 -cd33 -ncdb -ce -ci4 -cli0 "
+			 "-cp33 -cs -d0 -di4 -nfc1 -nfca -hnl "
+			 "-i4 -ip0 -l75 -lp -npcs -nprs -npsl "
+			 "-saf -sai -saw -nsc -nsob -nss -ppi2 "
+			 "-pmt ")
+	 (buffer-name))
+	(indent-region (point-min) (point-max))
+	(save-buffer-if-modified)))
 
 (defun tst-mark ()
   "."
@@ -182,22 +183,22 @@ Ask to say the buffer if modified."
   "Switch the orientation of two windows between horizontal and vertical split."
   (interactive)
   (if (> (length (window-list)) 2)
-      (error "Can't toggle with more than 2 windows!")
-    (let ((func (if (window-full-height-p)
-		    #'split-window-vertically
-		  #'split-window-horizontally)))
-      (delete-other-windows)
-      (funcall func)
-      (save-selected-window
-	(other-window 1)
-	;;(delete-window)
-	(switch-to-buffer (other-buffer))))))
+	  (error "Can't toggle with more than 2 windows!")
+	(let ((func (if (window-full-height-p)
+					#'split-window-vertically
+				  #'split-window-horizontally)))
+	  (delete-other-windows)
+	  (funcall func)
+	  (save-selected-window
+		(other-window 1)
+		;;(delete-window)
+		(switch-to-buffer (other-buffer))))))
 
 (defun split-current-window (size direction)
   "Split the current window with SIZE in DIRECTION."
   (split-window (frame-root-window)
-		(and size (prefix-numeric-value size))
-		direction))
+				(and size (prefix-numeric-value size))
+				direction))
 
 (defun split-current-window-below (&optional size)
   "Splits the current window below with SIZE."
@@ -235,32 +236,32 @@ Ask to say the buffer if modified."
 (defun find-overlays-specifying (prop pos)
   "Find the proposition PROP at position POS."
   (let ((overlays (overlays-at pos))
-	found)
-    (while overlays
-      (let ((overlay (car overlays)))
-	(if (overlay-get overlay prop)
-	    (setq found (cons overlay found))))
-      (setq overlays (cdr overlays)))
-    found))
+		found)
+	(while overlays
+	  (let ((overlay (car overlays)))
+		(if (overlay-get overlay prop)
+			(setq found (cons overlay found))))
+	  (setq overlays (cdr overlays)))
+	found))
 
 (defun de/highlight-line (&optional face-background)
   "Set the backgroud of the current line into FACE-BACKGROUND."
   (interactive)
   ;; remove the highlight if line was alrady highlighted
   (if (find-overlays-specifying
-       'line-highlight-overlay-marker
-       (line-beginning-position))
-      (remove-overlays
-       (line-beginning-position)
-       (+ 1 (line-end-position)))
-    ;; or highlight it instead
-    (let ((face-bg (or face-background '(:background "#2f4f4f")))
-	  (overlay-highlight
-	   (make-overlay
-	    (line-beginning-position)
-	    (+ 1 (line-end-position)))))
-      (overlay-put overlay-highlight 'face face-bg)
-      (overlay-put overlay-highlight 'line-highlight-overlay-marker t))))
+	   'line-highlight-overlay-marker
+	   (line-beginning-position))
+	  (remove-overlays
+	   (line-beginning-position)
+	   (+ 1 (line-end-position)))
+	;; or highlight it instead
+	(let ((face-bg (or face-background '(:background "#2f4f4f")))
+		  (overlay-highlight
+		   (make-overlay
+			(line-beginning-position)
+			(+ 1 (line-end-position)))))
+	  (overlay-put overlay-highlight 'face face-bg)
+	  (overlay-put overlay-highlight 'line-highlight-overlay-marker t))))
 
 (defun remove-highlight ()
   "Remove all highlight."
@@ -281,59 +282,58 @@ Version 2017-03-12"
   (font-lock-add-keywords
    nil
    '(("#[[:xdigit:]]\\{3\\}"
-      (0 (put-text-property
-	  (match-beginning 0)
-	  (match-end 0)
-	  'face
-	  (list :background
-		(let* ((ms (match-string-no-properties 0))
-		       (r (substring ms 1 2))
-		       (g (substring ms 2 3))
-		       (b (substring ms 3 4)))
-		  (concat "#" r r g g b b))))))
-     ("#[[:xdigit:]]\\{6\\}"
-      (0 (put-text-property
-	  (match-beginning 0)
-	  (match-end 0)
-	  'face (list :background (match-string-no-properties 0)))))))
+	  (0 (put-text-property
+		  (match-beginning 0)
+		  (match-end 0)
+		  'face
+		  (list :background
+				(let* ((ms (match-string-no-properties 0))
+					   (r (substring ms 1 2))
+					   (g (substring ms 2 3))
+					   (b (substring ms 3 4)))
+				  (concat "#" r r g g b b))))))
+	 ("#[[:xdigit:]]\\{6\\}"
+	  (0 (put-text-property
+		  (match-beginning 0)
+		  (match-end 0)
+		  'face (list :background (match-string-no-properties 0)))))))
   (font-lock-flush))
 
 (defun emacs-quit-confirm ()
   "Quit Emacs after confirmation."
   (interactive)
   (if (y-or-n-p-with-timeout
-       "Do you really want to exit Emacs ? " 10 nil)
-      (progn
-	(if window-system
-	    (progn
-	      (if (fboundp 'uptime) (uptime))
-	      (sleep-for 1)))
-	(save-buffers-kill-emacs)))
+	   "Do you really want to exit Emacs ? " 10 nil)
+	  (progn
+		(if window-system
+			(progn
+			  (if (fboundp 'uptime) (uptime))
+			  (sleep-for 1)))
+		(save-buffers-kill-emacs)))
   (message "emacs quit aborted"))
 
 (defun swap-buffer ()
   "Swap the current buffer with the previous buffer in the list."
   (interactive)
   (cond ((one-window-p) (display-buffer (other-buffer)))
-	((let* ((buffer-a (current-buffer))
-		(window-b (cadr (window-list)))
-		(buffer-b (window-buffer window-b)))
-	   (set-window-buffer window-b buffer-a)
-	   (switch-to-buffer buffer-b)
-	   (other-window 1)))))
+		((let* ((buffer-a (current-buffer))
+				(window-b (cadr (window-list)))
+				(buffer-b (window-buffer window-b)))
+		   (set-window-buffer window-b buffer-a)
+		   (switch-to-buffer buffer-b)
+		   (other-window 1)))))
 
 (require 'desktop+)
 (defun load-session (name)
   "Load the session saved under NAME using `desktop+-mode'."
   (interactive
    (list
-    (completing-read
-     "Desktop name: "
-     (remove "."
-	     (remove ".."
-		     (directory-files desktop+-base-dir))))))
+	(completing-read
+	 "Desktop name: "
+	 (remove "."
+			 (remove ".."
+					 (directory-files desktop+-base-dir))))))
   (desktop+-load name)
   (other-buffer "*Warnings*"))
-
 
 ;;; defuns.el ends here

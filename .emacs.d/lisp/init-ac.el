@@ -3,12 +3,12 @@
 ;;
 ;;; Commentary:
 ;;
-;;   Auto Complete mode configurations
+;;	 Auto Complete mode configurations
 ;;
 ;;; Summary:
 ;;
-;;    Loads Auto Complete globally, also set auto completion after
-;;    typing 3 characters
+;;	  Loads Auto Complete globally, also set auto completion after
+;;	  typing 3 characters
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -25,11 +25,11 @@
 (ac-config-default)
 
 (custom-set-variables
-  '(ac-etags-requires 1))
+ '(ac-etags-requires 1))
 
 (eval-after-load "etags"
   '(progn
-      (ac-etags-setup)))
+	 (ac-etags-setup)))
 
 (add-hook 'c-mode-common-hook 'ac-etags-ac-setup)
 (add-hook 'ruby-mode-common-hook 'ac-etags-ac-setup)

@@ -3,16 +3,16 @@
 ;;
 ;;; Commentary:
 ;;
-;;   Programming modes configuration, including C Language and Perl.
+;;	 Programming modes configuration, including C Language and Perl.
 ;;
 ;;; Summary:
 ;;
-;;    Set c-eldoc and programming hooks, some cperl configs and Tex.
-;;    Also enabling coloring delimiters.
+;;	  Set c-eldoc and programming hooks, some cperl configs and Tex.
+;;	  Also enabling coloring delimiters.
 ;;
 ;;; Functions defined here:
 ;;
-;;    `cperl-eldoc'
+;;	  `cperl-eldoc'
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -44,7 +44,7 @@
 (defun cperl-eldoc ()
   "Return meaningful doc string for eldoc mode."
   (car (let ((cperl-message-on-help-error nil))
-	 (cperl-get-help))))
+		 (cperl-get-help))))
 
 (rainbow-delimiters-mode 1)
 (save-place-mode 1)
@@ -60,18 +60,18 @@
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'prog-mode-hook 'diff-hl-mode)
 (add-hook 'cperl-mode-hook
-	  (lambda ()
-	    (set (make-local-variable 'eldoc-documentation-function)
-		 'cperl-eldoc)))
+		  (lambda ()
+			(set (make-local-variable 'eldoc-documentation-function)
+				 'cperl-eldoc)))
 
 ;; (add-hook 'cperl-mode-hook 'auto-insert)
 
 (defun generate-tab-stops (&optional max width)
   "Return a sequence of MAX elements suitable for `tab-stop-list' of tabs size WIDTH."
   (let* ((max-column (or max 200))
-	 (tab-width (or width tab-width))
-	 (count (/ max-column tab-width)))
-    (number-sequence tab-width (* tab-width count) tab-width)))
+		 (tab-width (or width tab-width))
+		 (count (/ max-column tab-width)))
+	(number-sequence tab-width (* tab-width count) tab-width)))
 
 (setq tab-width 4)
 (setq tab-stop-list (generate-tab-stops))
