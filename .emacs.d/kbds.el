@@ -168,4 +168,6 @@
 
 (global-set-key (kbd "C-c \\") 'hide/show-comments-toggle)
 
+(global-set-key (kbd "M-C-I") 'ac-fuzzy-complete)
+
 ;;; kbds.el ends here

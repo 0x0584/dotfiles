@@ -106,6 +106,7 @@ Return a list of installed PACKAGES or nil for every skipped package."
  'disaster
  'djvu
  'doom
+ 'diff-hl
  'edit-server
  'eldoc-eval
  'eldoc-overlay
