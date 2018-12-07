@@ -49,6 +49,7 @@
 ;; Global key sets
 
 (require 'dired)
+
 (define-key dired-mode-map (kbd ",") 'create-etags)
 
 (global-set-key (kbd "<f12>") 'info)
@@ -87,8 +88,8 @@
 (global-set-key (kbd "C-x b") 'helm-mini);
 (global-set-key (kbd "C-x f") 'helm-find-files)
 
-(global-set-key (kbd "M-<up>") 'move-line-up)
-(global-set-key (kbd "M-<down>") 'move-line-down)
+(global-set-key (kbd "M-p") 'move-line-up)
+(global-set-key (kbd "M-n") 'move-line-down)
 
 (global-set-key (kbd "C-c w <down>") 'wind-below)
 (global-set-key (kbd "C-c w <up>") 'wind-above)
@@ -97,6 +98,7 @@
 (global-set-key (kbd "C-c w o") 'switch-window-orientation)
 (global-set-key (kbd "C-c w s") 'swap-buffer)
 (global-set-key (kbd "C-c v") 'safe-revert-buffer)
+
 (global-set-key (kbd "S-M-<down>") 'windmove-down)
 (global-set-key (kbd "S-M-<left>") 'windmove-left)
 (global-set-key (kbd "S-M-<right>") 'windmove-right)
@@ -109,17 +111,18 @@
 (global-set-key (kbd "C-x <left>") 'previous-code-buffer)
 (global-set-key (kbd "C-x <right>") 'next-code-buffer)
 
-(global-set-key (kbd "S-C-l") 'linum-mode)
+(global-set-key (kbd "C-L") 'linum-mode)
 (global-set-key (kbd "C-:") 'linum-relative-mode)
 
-(global-set-key (kbd "C-c C-d") 'named-term)
+(global-set-key (kbd "C-c t t") 'named-term)
+(global-set-key (kbd "C-c t b") 'named-term-below)
 
-(global-set-key (kbd "<f4>") 'bm-remove-all-current-buffer)
-(global-set-key (kbd "<f5>") 'bm-toggle)
-(global-set-key (kbd "<f6>") 'bm-previous)
-(global-set-key (kbd "<f7>") 'bm-next)
+(global-set-key (kbd "C-c b R") 'bm-remove-all-current-buffer)
+(global-set-key (kbd "C-c b t") 'bm-toggle)
+(global-set-key (kbd "C-c b p") 'bm-previous)
+(global-set-key (kbd "C-c b n") 'bm-next)
 
-(global-set-key (kbd "<f8>") 'de/highlight-line)
+(global-set-key (kbd "C-c b h") 'de/highlight-line)
 
 (global-set-key (kbd "C-h z") 'zeal-at-point)
 
@@ -169,5 +172,9 @@
 (global-set-key (kbd "C-c \\") 'hide/show-comments-toggle)
 
 (global-set-key (kbd "M-C-I") 'ac-fuzzy-complete)
+
+(global-set-key (kbd "C-c d c") 'desktop+-create)
+(global-set-key (kbd "C-c d l") 'desktop+-load)
+(global-set-key (kbd "C-c d d") 'disaster)
 
 ;;; kbds.el ends here

@@ -23,6 +23,7 @@
 (require 'cperl-mode)
 (require 'cc-mode)
 (require 'diff-hl)
+(load-library "ediff")
 
 (diff-hl-mode 1)
 

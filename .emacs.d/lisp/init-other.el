@@ -3,18 +3,18 @@
 ;;
 ;;; Commentary:
 ;;
-;;   Other mode configurations
+;;	 Other mode configurations
 ;;
 ;;; Summary:
 ;;
-;;    Showing less minor mods, activating smex and god mode
+;;	  Showing less minor mods, activating smex and god mode
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Code:
 
 (require 'rich-minority)
-(require 'smex)			    ; Not needed if you use package.el
+(require 'smex)				; Not needed if you use package.el
 (require 'fzf)
 (require 'bm)
 (require 'god-mode)
@@ -27,8 +27,8 @@
 (defun god-toggle-on-overwrite ()
   "Toggle `god-mode` on `overwrite-mode`."
   (if (bound-and-true-p overwrite-mode)
-      (god-local-mode-pause)
-    (god-local-mode-resume)))
+	  (god-local-mode-pause)
+	(god-local-mode-resume)))
 
 (recentf-mode 1)
 (savehist-mode 1)
@@ -43,15 +43,16 @@
 (zone-select-add-program 'zone-rainbow)
 
 (defun svg-clock-when-zone ()
-  "Used with zone."
+  "Use `svg-clock' with zone."
   (svg-clock)
+  (previous-buffer)
   (backward-char))
 
 (defun zone-svg-clock ()
   "Zone out with svg clock."
   (interactive)
   (let ((zone-programs [svg-clock-when-zone]))
-    (zone)))
+	(zone)))
 
 (zone-select-add-program 'zone-svg-clock)
 

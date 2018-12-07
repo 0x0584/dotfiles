@@ -91,6 +91,7 @@
    (quote
 	("../../include" "../include" "../util" "../utils" "../lib" "../libs")))
  '(flycheck-clang-includes nil)
+ '(indicate-buffer-boundaries (quote left))
  '(line-number-mode nil)
  '(linum-format (quote dynamic))
  '(magit-diff-refine-hunk t)

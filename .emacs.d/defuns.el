@@ -53,6 +53,8 @@
 ;;
 ;;; Code:
 
+(require 'desktop+)
+
 (defun insert-time ()
   "Insert the current time as H:M:S."
   (interactive)
@@ -322,18 +324,5 @@ Version 2017-03-12"
 		   (set-window-buffer window-b buffer-a)
 		   (switch-to-buffer buffer-b)
 		   (other-window 1)))))
-
-(require 'desktop+)
-(defun load-session (name)
-  "Load the session saved under NAME using `desktop+-mode'."
-  (interactive
-   (list
-	(completing-read
-	 "Desktop name: "
-	 (remove "."
-			 (remove ".."
-					 (directory-files desktop+-base-dir))))))
-  (desktop+-load name)
-  (other-buffer "*Warnings*"))
 
 ;;; defuns.el ends here
