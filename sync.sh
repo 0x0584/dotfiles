@@ -40,8 +40,11 @@ case "$choice" in
 
 	echo "Syncing Other configrations.."
 	cp -v "$from/.bashrc" "$to/.bashrc"
+	cp -TRv "$from/.zsh" "$to/.zsh"
+	cp -v "$from/.zshrc" "$to/.zshrc"
 	cp -v "$from/.gitconfig" "$to/.gitconfig"
 	cp -v "$from/.xboardrc" "$to/.xboardrc"
+	# those defaults might not be preset in all systems
 	cp -v "$from/.Xdefaults" "$to/.Xdefaults" 2>/dev/null
 	cp -TRv "$from/.templates" "$to/.templates"
 	echo "";;
