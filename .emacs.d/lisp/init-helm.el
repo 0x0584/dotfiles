@@ -3,12 +3,12 @@
 ;;
 ;;; Commentary:
 ;;
-;;   Helm mode configurations
+;;	 Helm mode configurations
 ;;
 ;;; Summary:
 ;;
-;;    Loads Helm mode globally, enabling helm resizing and fuzzy
-;;    matching
+;;	  Loads Helm mode globally, enabling helm resizing and fuzzy
+;;	  matching
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -16,8 +16,11 @@
 
 (require 'helm)
 (require 'helm-config)
+(require 'helm-c-yasnippet)
 
 (setq helm-M-x-fuzzy-match t)
+(setq helm-yas-space-match-any-greedy t)
+(global-set-key (kbd "C-c TAB") 'helm-yas-complete)
 
 (helm-mode 1)
 (helm-autoresize-mode t)

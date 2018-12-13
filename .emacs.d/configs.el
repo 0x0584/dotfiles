@@ -82,6 +82,12 @@
 ;; Better that a sound, right?
 (setq visible-bell t)
 
+(setq debug-on-error t)
+
+(setq tab-width 4)
+(setq tab-stop-list (generate-tab-stops))
+(setq indent-tabs-mode nil)
+
 (defalias 'wind-below 'split-current-window-below)
 (defalias 'wind-above 'split-current-window-above)
 (defalias 'wind-right 'split-current-window-right)

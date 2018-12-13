@@ -111,8 +111,8 @@
 (global-set-key (kbd "C-x <left>") 'previous-code-buffer)
 (global-set-key (kbd "C-x <right>") 'next-code-buffer)
 
-(global-set-key (kbd "C-L") 'linum-mode)
-(global-set-key (kbd "C-:") 'linum-relative-mode)
+(global-set-key (kbd "C-c l l") 'linum-mode)
+(global-set-key (kbd "C-c l r") 'linum-relative-mode)
 
 (global-set-key (kbd "C-c t t") 'named-term)
 (global-set-key (kbd "C-c t b") 'named-term-below)
@@ -176,5 +176,6 @@
 (global-set-key (kbd "C-c d c") 'desktop+-create)
 (global-set-key (kbd "C-c d l") 'desktop+-load)
 (global-set-key (kbd "C-c d d") 'disaster)
+(global-set-key (kbd "C-x d") 'delete-region)
 
 ;;; kbds.el ends here

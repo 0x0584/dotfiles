@@ -23,7 +23,7 @@
 (require 'cperl-mode)
 (require 'cc-mode)
 (require 'diff-hl)
-(load-library "ediff")
+(require 'yasnippet)
 
 (diff-hl-mode 1)
 
@@ -67,16 +67,10 @@
 
 ;; (add-hook 'cperl-mode-hook 'auto-insert)
 
-(defun generate-tab-stops (&optional max width)
-  "Return a sequence of MAX elements suitable for `tab-stop-list' of tabs size WIDTH."
-  (let* ((max-column (or max 200))
-		 (tab-width (or width tab-width))
-		 (count (/ max-column tab-width)))
-	(number-sequence tab-width (* tab-width count) tab-width)))
+(yas-global-mode 1)
+(yas-reload-all)
 
-(setq tab-width 4)
-(setq tab-stop-list (generate-tab-stops))
-(setq indent-tabs-mode nil)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
 
 (provide 'init-prog)
 ;;; init-prog.el ends here

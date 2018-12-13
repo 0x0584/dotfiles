@@ -325,4 +325,11 @@ Version 2017-03-12"
 		   (switch-to-buffer buffer-b)
 		   (other-window 1)))))
 
+(defun generate-tab-stops (&optional max width)
+  "Return a sequence of MAX elements suitable for `tab-stop-list' of tabs size WIDTH."
+  (let* ((max-column (or max 200))
+		 (tab-width (or width tab-width))
+		 (count (/ max-column tab-width)))
+	(number-sequence tab-width (* tab-width count) tab-width)))
+
 ;;; defuns.el ends here

@@ -61,8 +61,7 @@
 	  "%50ITEM(Task) %2PRIORITY %10Effort(Effort){:} %10CLOCKSUM")
 (defvar org-latex-listings 'minted)
 (defvar org-latex-pdf-process
-  '((concat "pdflatex -shell-escape -interaction "
-			"nonstopmode -output-directory %o %f")))
+  '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 (defun org-turn-on-iimage-in-org ()
   "Display images in your org file."

@@ -21,6 +21,7 @@
 (require 'recentf)
 (require 'magit-todos)
 (require 'god-mode-isearch)
+(require 'desktop+)
 
 (setf rm-blacklist "")
 
@@ -65,6 +66,21 @@
 (add-to-list 'god-exempt-major-modes 'dired-mode)
 (add-hook 'overwrite-mode-hook 'god-toggle-on-overwrite)
 (add-hook 'text-mode 'toggle-truncate-lines)
+
+;; (defun my/desktop-frame-title-function (desktop-name)
+;;	 "Set the frame title to the current DESKTOP-NAME."
+;;	 (list (concat "%b - Emacs [" desktop-name "]")))
+
+;; (setq desktop+-frame-title-function
+;;	  'my/desktop-frame-title-function)
+
+;; (setq desktop+-special-buffer-handlers
+;;	  '(term-mode
+;;		compilation-mode
+;;		org-agenda-mode
+;;		indirect-buffer
+;;		Man-mode
+;;		shell-mode))
 
 (provide 'init-other)
 ;;; init-other.el ends here
