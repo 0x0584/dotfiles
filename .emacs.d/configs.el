@@ -46,8 +46,9 @@
 ;;
 ;;; Code:
 (require 'warnings)
+(require 'time-stamp)
 
-(setenv "SHELL" (expand-file-name "/bin/bash"))
+(setenv "SHELL" (expand-file-name "/bin/zsh"))
 
 ;; Personal Information
 (setq user-full-name "Anas Rchid"
@@ -78,6 +79,8 @@
 
 ;; Use lexical binding when evaluating Lisp
 (setq lexical-binding t)
+
+(setq time-stamp-pattern "8/Updated:[ \t]+\\\\?[\"<]+%:y-%02m-%02d %3a %02H:%02M:%02S\\\\?[\">]")
 
 ;; Better that a sound, right?
 (setq visible-bell t)

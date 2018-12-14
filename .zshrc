@@ -9,7 +9,13 @@ export ZSHRC="$HOME/.zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+
 ZSH_THEME="robbyrussell"
+# ZSH_THEME="af-magic"
+# ZSH_THEME="cypher"
+# ZSH_THEME="darkblood"
+# ZSH_THEME="zero"
+# ZSH_THEME="powerline"
 # ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)

@@ -157,23 +157,24 @@ If some buffer are modified, ask to save them."
   "Call `indent' on the whole current buffer.
 Ask to say the buffer if modified."
   (interactive)
-  ;; setting the mark
-  (goto-char (point-min))
-  (push-mark (point-max) nil t)
-  (when (save-buffer-if-modified)
-	(universal-argument)
-	(shell-command-on-region
-	 (point-min)
-	 (point-max)
-	 (concat "indent -nbad -bap -bbo -nbc -br -brs "
-			 "-brf -c33 -cd33 -ncdb -ce -ci4 -cli0 "
-			 "-cp33 -cs -d0 -di4 -nfc1 -nfca -hnl "
-			 "-i4 -ip0 -l75 -lp -npcs -nprs -npsl "
-			 "-saf -sai -saw -nsc -nsob -nss -ppi2 "
-			 "-pmt ")
-	 (buffer-name))
-	(indent-region (point-min) (point-max))
-	(save-buffer-if-modified)))
+  (let ((current (point)))
+	(goto-char (point-min))
+	(push-mark (point-max) nil t)
+	(when (save-buffer-if-modified)
+	  (universal-argument)
+	  (shell-command-on-region
+	   (point-min)
+	   (point-max)
+	   (concat "indent -nbad -bap -bbo -nbc -br -brs "
+			   "-brf -c33 -cd33 -ncdb -ce -ci4 -cli0 "
+			   "-cp33 -cs -d0 -di4 -nfc1 -nfca -hnl "
+			   "-i4 -ip0 -l75 -lp -npcs -nprs -npsl "
+			   "-saf -sai -saw -nsc -nsob -nss -ppi2 "
+			   "-pmt ")
+	   (buffer-name))
+	  (indent-region (point-min) (point-max))
+	  (save-buffer-if-modified)
+	  (goto-char current))))
 
 (defun tst-mark ()
   "."

@@ -24,6 +24,8 @@
 (require 'cc-mode)
 (require 'diff-hl)
 (require 'yasnippet)
+(require 'tex)
+(require 'time-stamp)
 
 (diff-hl-mode 1)
 
@@ -50,25 +52,32 @@
 (rainbow-delimiters-mode 1)
 (save-place-mode 1)
 
+(yas-global-mode 1)
+(yas-reload-all)
+
 ;; Hooks
+
+(add-hook 'before-save-hook 'time-stamp)
+
 (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-(add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode)
+
+;; (add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode)
+
 (add-hook 'css-mode-hook 'xah-syntax-color-hex)
 (add-hook 'php-mode-hook 'xah-syntax-color-hex)
 (add-hook 'html-mode-hook 'xah-syntax-color-hex)
+
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'prog-mode-hook 'diff-hl-mode)
+
 (add-hook 'cperl-mode-hook
 		  (lambda ()
 			(set (make-local-variable 'eldoc-documentation-function)
 				 'cperl-eldoc)))
 
 ;; (add-hook 'cperl-mode-hook 'auto-insert)
-
-(yas-global-mode 1)
-(yas-reload-all)
 
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 

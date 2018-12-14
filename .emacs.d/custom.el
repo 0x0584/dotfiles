@@ -58,6 +58,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(Linum-format "%7i ")
+ '(ac-delay 0.1)
  '(ac-etags-requires 1)
  '(ansi-color-names-vector
    ["#c0c0c0" "#336c6c" "#806080" "#0f2050" "#732f2c" "#23733c" "#6c1f1c" "#232333"])
@@ -83,6 +84,7 @@
  '(custom-safe-themes
    (quote
 	("f11e219c9d043cbd5f4b2e01713c2c24a948a98bed48828dc670bd64ae771aa1" default)))
+ '(debug-on-error nil)
  '(fci-rule-color "#c7c7c7")
  '(find-grep-options "-q --color=auto")
  '(find-ls-option (quote ("-ls" . "-dilsbF")))
@@ -105,7 +107,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-	(helm-c-yasnippet java-snippets yasnippet-snippets xbm-life exwm diff-hl chess zone-nyan zone-rainbow zone-select zweilight-theme zenburn-theme zeal-at-point xkcd wordnut which-key websocket web-mode web-beautify volatile-highlights vline vkill visual-regexp undo-tree tuareg tldr telephone-line tao-theme tangotango-theme tango-plus-theme tango-2-theme symon sx swiper swap-buffers svg-clock super-save ssh sr-speedbar spaces spacemacs-theme sotlisp smex smartparens smart-mode-line-powerline-theme showkey show-css rvm runtests ruby-tools ruby-refactor ruby-hash-syntax ruby-factory ruby-electric ruby-dev ruby-compilation ruby-block rubocop rsense rotate robe restart-emacs rainbow-delimiters rainbow-blocks quickrun quack popwin popup-switcher popup-kill-ring popup-complete plsql plsense plantuml-mode php-eldoc php+-mode persp-mode perl6-mode pacmacs ox-pandoc orgtbl-ascii-plot org-webpage org-web-tools org-ref org-readme org-preview-html org-pandoc org-page org-gnome-calendar org-gnome org-download org-doing org-commentary org-beautify-theme org-alert omniref nimbus-theme nhexl-mode nasm-mode names mysql-to-org minor-mode-hack memory-usage markdown-mode+ map-regexp magithub magit-todos magit-rockstar magit-org-todos magit-find-file magit-filenotify magit-annex magic-latex-buffer linum-relative latexdiff latex-preview-pane langtool lang-refactor-perl julia-shell julia-repl inkpot-theme impatient-mode iedit hl-sexp highlight-quoted highlight-operators highlight-escape-sequences highlight-blocks highlight hide-comnt hexrgb helm-themes helm-spotify-plus helm-rubygems-org helm-rubygems-local helm-robe helm-perldoc helm-make helm-gtags helm-gitignore helm-git-grep helm-git-files helm-git helm-flymake helm-dictionary helm-dash helm-css-scss helm-company grandshell-theme gotham-theme god-mode gnuplot gnu-apl-mode gited git-timemachine geben fzf fuzzy function-args font-lock+ flymake-ruby flymake-less flymake-json flymake-jslint flymake-jshint flymake-css flylisp flycheck-perl6 flycheck-julia flycheck-cstyle flycheck-css-colorguard flycheck-clangcheck emojify-logos electric-operator eldoc-overlay eldoc-eval edit-server djvu disaster diminish diffview devdocs desktop-menu desktop+ define-word css-eldoc csharp-mode company-inf-ruby clues-theme checkbox c-eldoc boxquote bm bind-key benchmark-init awk-it auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex ascii-art-to-unicode anything anti-zenburn-theme ample-theme ace-popup-menu ac-slime ac-php ac-ispell ac-inf-ruby ac-html-csswatcher ac-html-bootstrap ac-html ac-helm ac-etags ac-clang ac-c-headers)))
+	(org-pomodoro pomidor flycheck-grammalecte helm-c-yasnippet java-snippets yasnippet-snippets xbm-life exwm diff-hl chess zone-nyan zone-rainbow zone-select zweilight-theme zenburn-theme zeal-at-point xkcd wordnut which-key websocket web-mode web-beautify volatile-highlights vline vkill visual-regexp undo-tree tuareg tldr telephone-line tao-theme tangotango-theme tango-plus-theme tango-2-theme symon sx swiper swap-buffers svg-clock super-save ssh sr-speedbar spaces spacemacs-theme sotlisp smex smartparens showkey show-css rvm runtests ruby-tools ruby-refactor ruby-hash-syntax ruby-factory ruby-electric ruby-dev ruby-compilation ruby-block rubocop rsense rotate robe restart-emacs rainbow-delimiters rainbow-blocks quickrun quack popwin popup-switcher popup-kill-ring popup-complete plsql plsense plantuml-mode php-eldoc php+-mode persp-mode perl6-mode pacmacs ox-pandoc orgtbl-ascii-plot org-webpage org-web-tools org-ref org-readme org-preview-html org-pandoc org-page org-gnome-calendar org-gnome org-download org-doing org-commentary org-beautify-theme org-alert omniref nimbus-theme nhexl-mode nasm-mode names mysql-to-org minor-mode-hack memory-usage markdown-mode+ map-regexp magithub magit-todos magit-rockstar magit-org-todos magit-find-file magit-filenotify magit-annex magic-latex-buffer linum-relative latexdiff latex-preview-pane langtool lang-refactor-perl julia-shell julia-repl inkpot-theme impatient-mode iedit hl-sexp highlight-quoted highlight-operators highlight-escape-sequences highlight-blocks highlight hide-comnt hexrgb helm-themes helm-spotify-plus helm-rubygems-org helm-rubygems-local helm-robe helm-perldoc helm-make helm-gtags helm-gitignore helm-git-grep helm-git-files helm-git helm-flymake helm-dictionary helm-dash helm-css-scss helm-company grandshell-theme gotham-theme god-mode gnuplot gnu-apl-mode gited git-timemachine geben fzf fuzzy function-args font-lock+ flymake-ruby flymake-less flymake-json flymake-jslint flymake-jshint flymake-css flylisp flycheck-perl6 flycheck-julia flycheck-cstyle flycheck-css-colorguard flycheck-clangcheck emojify-logos electric-operator eldoc-overlay eldoc-eval edit-server djvu disaster diminish diffview devdocs desktop-menu desktop+ define-word css-eldoc csharp-mode company-inf-ruby clues-theme checkbox c-eldoc boxquote bm bind-key benchmark-init awk-it auto-complete-clang auto-complete-c-headers auto-complete-auctex auctex ascii-art-to-unicode anything anti-zenburn-theme ample-theme ace-popup-menu ac-slime ac-php ac-ispell ac-inf-ruby ac-html-csswatcher ac-html-bootstrap ac-html ac-helm ac-etags ac-clang ac-c-headers)))
  '(pdf-view-midnight-colors (quote ("#232333" . "#c7c7c7")))
  '(quack-programs
    (quote
@@ -114,6 +116,7 @@
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tab-width 4)
+ '(time-stamp-format "%:y-%02m-%02d %3a %02H:%02M:%02S")
  '(tool-bar-mode nil)
  '(vc-annotate-background "#d4d4d4")
  '(vc-annotate-color-map
