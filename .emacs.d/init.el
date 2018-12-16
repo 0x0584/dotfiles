@@ -3,7 +3,8 @@
 ;; Filename: init.el
 ;; Description: Emacs Configuration
 ;; Author: Anas (0x0584)
-;; Created: Nov 20, 2018
+;; Created: <2018-11-20 Mon 13:07:00>
+;; Updated: <2018-12-16 Sun 02:52:52>
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -28,11 +29,7 @@
 ;;
 ;;; Variables defined here:
 ;;
-;;	   `*emacs-load-start*'
-;;
 ;;; Functions defined here:
-;;
-;;	   `display-loading-time', `time-to-ms', `ensure-package-installed'
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -56,205 +53,14 @@
 ;;; Code:
 
 ;; Load packages
-(require 'package)
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
 (package-initialize)
 
-(setq package-archives
-	  '(("gnu" . "http://elpa.gnu.org/packages/")
-		("melpa" . "http://melpa.milkbox.net/packages/")))
-
-(defun ensure-package-installed (&rest packages)
-  "Assure every package is installed, ask for installation if it’s not.
-Return a list of installed PACKAGES or nil for every skipped package."
-  (mapcar
-   (lambda (package)
-	 (unless (package-installed-p package)
-	   (package-refresh-contents)
-	   (package-install package)))
-   packages))
-
-(ensure-package-installed
- 'ac-etags
- 'ac-helm
- 'ac-inf-ruby
- 'ac-ispell
- 'ac-php
- 'ac-php-core
- 'ac-slime
- 'ace-popup-menu
- 'alert
- 'anti-zenburn-theme
- 'anything
- 'async
- 'auctex
- 'auto-complete
- 'auto-complete-auctex
- 'auto-complete-c-headers
- 'auto-complete-clang
- 'awk-it
- 'basic-c-compile
- 'benchmark-init
- 'bm
- 'boxquote
- 'c-eldoc
- 'checkbox
- 'chess
- 'clues-theme
- 'csharp-mode
- 'css-eldoc
- 'devdocs
- 'disaster
- 'djvu
- 'doom
- 'diff-hl
- 'edit-server
- 'eldoc-eval
- 'eldoc-overlay
- 'electric-operator
- 'emojify
- 'emojify-logos
- 'epl
- 'flycheck
- 'flycheck
- 'flycheck-clangcheck
- 'flycheck-css-colorguard
- 'flycheck-cstyle
- 'flycheck-julia
- 'flycheck-perl6
- 'flylisp
- 'flymake-css
- 'flymake-easy
- 'flymake-jshint
- 'flymake-jslint
- 'flymake-json
- 'flymake-less
- 'flymake-ruby
- 'function-args
- 'fuzzy
- 'fzf
- 'gitignore-mode
- 'git-timemachine
- 'gnu-apl-mode
- 'gnuplot
- 'god-mode
- 'gotham-theme
- 'graphql
- 'helm
- 'helm-bibtex
- 'helm-company
- 'helm-core
- 'helm-flymake
- 'helm-git
- 'helm-git-files
- 'helm-git-grep
- 'helm-perldoc
- 'helm-robe
- 'helm-rubygems-local
- 'helm-rubygems-org
- 'helm-themes
- 'hexrgb
- 'highlight
- 'highlight-blocks
- 'highlight-escape-sequences
- 'highlight-operators
- 'highlight-quoted
- 'hlinum
- 'hl-sexp
- 'hl-todo
- 'impatient-mode
- 'inf-ruby
- 'inkpot-theme
- 'lang-refactor-perl
- 'langtool
- 'latexdiff
- 'latex-preview-pane
- 'linum-relative
- 'magit
- 'magit-annex
- 'magit-filenotify
- 'magit-find-file
- 'magithub
- 'magithub
- 'magit-org-todos
- 'magit-popup
- 'magit-rockstar
- 'magit-todos
- 'markdown-mode+
- 'memory-usage
- 'nasm-mode
- 'nhexl-mode
- 'org
- 'org-alert
- 'org-beautify-theme
- 'org-commentary
- 'org-doing
- 'org-download
- 'org-page
- 'org-readme
- 'org-ref
- 'orgtbl-ascii-plot
- 'org-webpage
- 'org-web-tools
- 'parsebib
- 'pcre2el
- 'pdf-tools
- 'perl6-mode
- 'persp-mode
- 'php-eldoc
- 'php+-mode
- 'pkg-info
- 'plantuml-mode
- 'plsense
- 'plsql
- 'popup
- 'popup-complete
- 'popup-kill-ring
- 'popup-switcher
- 'popwin
- 'pos-tip
- 'quack
- 'quickrun
- 'rainbow-blocks
- 'rainbow-delimiters
- 'restart-emacs
- 'rich-minority
- 'rubocop
- 'ruby-block
- 'ruby-compilation
- 'ruby-dev
- 'ruby-electric
- 'ruby-factory
- 'ruby-hash-syntax
- 'ruby-refactor
- 'ruby-tools
- 'runtests
- 'rvm
- 'show-css
- 'showkey
- 'simple-httpd
- 'slime
- 'smex
- 'sotlisp
- 'spaces
- 'sr-speedbar
- 'ssh
- 'super-save
- 'svg
- 'svg-clock
- 'tablist
- 'telephone-line
- 'tldr
- 'tuareg
- 'undo-tree
- 'web-mode
- 'websocket
- 'which-key
- 'wordnut
- 'xkcd
- 'yaoddmuse
- 'zeal-at-point
- 'zenburn-theme)
-
+(load-file "~/.emacs.d/pkgs.el")
 
 ;; Load Emacs modes configurations
 (load-file "~/.emacs.d/modes.el")

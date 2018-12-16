@@ -22,6 +22,7 @@ case "$choice" in
 	echo "Syncing Emacs configuration.."
 	cp -TRv	 "$from/.emacs.d/lisp/" "$to/.emacs.d/lisp/"
 	cp -v "$from/.emacs.d/init.el" "$to/.emacs.d/init.el"
+	cp -v "$from/.emacs.d/pkgs.el" "$to/.emacs.d/pkgs.el"
 	cp -v "$from/.emacs.d/configs.el" "$to/.emacs.d/configs.el"
 	cp -v "$from/.emacs.d/defuns.el" "$to/.emacs.d/defuns.el"
 	cp -v "$from/.emacs.d/modes.el" "$to/.emacs.d/modes.el"

@@ -9,7 +9,7 @@
 ;;
 ;;; Commentary:
 ;;
-;;    Some Useful Emacs mode configurations
+;;	  Some Useful Emacs mode configurations
 ;;
 ;;; Summary:
 ;;
@@ -34,8 +34,6 @@
 ;;
 ;;; Code:
 
-;; Winner mode to easily switch between windows configs
-
 ;; Setting the initial frame size
 (when (window-system)
   (tooltip-mode -1)
@@ -44,7 +42,7 @@
   (scroll-bar-mode -1))
 
 (if (not window-system)
-    t
+	t
   (set-frame-height (selected-frame) 35)
   (set-frame-width (selected-frame) 82))
 
@@ -66,7 +64,7 @@
 (define-minor-mode delete-nl-spaces-mode
   "Toggle deleting needless spaces (Delete Needless Spaces mode).
 With a prefix argument ARG, enable Delete Needless Spaces mode if ARG is
-positive, and disable it otherwise.  If called from Lisp, enable
+positive, and disable it otherwise.	 If called from Lisp, enable
 the mode if ARG is omitted or nil.
 If Delete Needless Spaces mode is enable, before a buffer is saved to its file:
 - delete initial blank lines;
@@ -78,17 +76,17 @@ If Delete Needless Spaces mode is enable, before a buffer is saved to its file:
 (defun delete-nl-spaces ()
   "Execute `delete-nl-spaces'."
   (if (delete-nl-spaces-mode)
-      (save-excursion
+	  (save-excursion
 	;; Delete initial blank lines
 	(goto-char (point-min))
 	(skip-chars-forward " \n\t")
 	(skip-chars-backward " \t")
 	(if (> (point) 0)
-	    (delete-char (- (- (point) 1))))
+		(delete-char (- (- (point) 1))))
 
 	;; Change spaces on tabs or tabs on spaces
 	(if indent-tabs-mode
-	    (tabify (point-min) (point-max))
+		(tabify (point-min) (point-max))
 	  (untabify (point-min) (point-max)))
 
 	;; Delete the trailing whitespaces and all blank lines
@@ -99,16 +97,16 @@ If Delete Needless Spaces mode is enable, before a buffer is saved to its file:
 	(unless require-final-newline
 	  (goto-char (point-max))
 	  (let ((trailnewlines (skip-chars-backward "\n\t")))
-	    (if (< trailnewlines 0)
+		(if (< trailnewlines 0)
 		(delete-char (abs trailnewlines))))))))
 
 (defun delete-nl-spaces-find-file-hook ()
   "Check whether to disable `delete-nl-spaces'."
   (when (and (buffer-file-name) (file-exists-p (buffer-file-name)))
-    (let ((buffer (current-buffer))
+	(let ((buffer (current-buffer))
 	  (final-newline require-final-newline)
 	  (tabs-mode indent-tabs-mode))
-      (with-temp-buffer
+	  (with-temp-buffer
 	(setq-local require-final-newline final-newline)
 	(setq indent-tabs-mode tabs-mode)
 	(insert-buffer-substring buffer)
@@ -126,11 +124,11 @@ If Delete Needless Spaces mode is enable, before a buffer is saved to its file:
   :keymap (make-sparse-keymap))
 
 (dolist (type '(mouse down-mouse drag-mouse
-		      double-mouse triple-mouse))
+			  double-mouse triple-mouse))
   (dolist (prefix '("" C- M- S- M-S- C-M- C-S- C-M-S-))
-    ;; Yes, I actually HAD to go up to 7 here.
-    (dotimes (n 7)
-      (let ((k (format "%s%s-%s" prefix type n)))
+	;; Yes, I actually HAD to go up to 7 here.
+	(dotimes (n 7)
+	  (let ((k (format "%s%s-%s" prefix type n)))
 	(define-key disable-mouse-mode-map
 	  (vector (intern k)) #'ignore)))))
 
@@ -143,6 +141,7 @@ If Delete Needless Spaces mode is enable, before a buffer is saved to its file:
 
 (electric-pair-mode)
 
+(require 'speedbar)
 (setq speedbar-use-images nil)
 
 (add-hook 'find-file-hook 'delete-nl-spaces-find-file-hook)
