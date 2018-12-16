@@ -4,7 +4,7 @@
 ;; Description: Emacs Configuration
 ;; Author: Anas (0x0584)
 ;; Created: <2018-12-16 Mon 02:30:00>
-;; Updated: <2018-12-16 Sun 02:56:06>
+;; Updated: <2018-12-16 Sun 15:23:23>
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -13,19 +13,6 @@
 ;;	  Emacs Configuration
 ;;
 ;;; Summary:
-;;
-;;	  Load modes.el -- Modes configurations
-;;	  Load defuns.el -- Useful Emacs Lisp functions
-;;	  Load configs.el -- Some addtional Emacs configurations
-;;	  Load keybindings.el -- My Emacs keybindings
-;;	  Load custom.el -- customized variables and faces
-;;	  Load beta.el -- Anything that I would test
-;;
-;; This is configuration is done after working with a messy
-;; Emacs configuration for three years.	 Now after dealing with
-;; Emacs Lisp for a while, I think I can handle this, as they said:
-;;
-;;	 - You would need to configure your Emacs all over someday.
 ;;
 ;;; Variables defined here:
 ;;
@@ -61,7 +48,8 @@
 
 (setq package-archives
 	  '(("gnu" . "http://elpa.gnu.org/packages/")
-		("melpa" . "http://melpa.milkbox.net/packages/")))
+		("melpa" . "http://melpa.milkbox.net/packages/")
+		("emacswiki" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/emacswiki/")))
 
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
