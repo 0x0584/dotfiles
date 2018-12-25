@@ -77,7 +77,11 @@
 			(set (make-local-variable 'eldoc-documentation-function)
 				 'cperl-eldoc)))
 
-;; (add-hook 'cperl-mode-hook 'auto-insert)
+(add-hook 'cperl-mode-hook 'auto-insert)
+(add-hook 'c-mode-hook 'auto-insert)
+(add-hook 'shell-mode-hook 'auto-insert)
+(add-hook 'emacs-lisp-mode-hook 'auto-insert)
+(add-hook 'ruby-mode-hook 'auto-insert)
 
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 

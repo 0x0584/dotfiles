@@ -20,7 +20,7 @@
 (require 'org-clock)
 
 (setq alert-default-style 'libnotify)
-(setq org-alert-interval (* 60 60))	; each hour
+(setq org-alert-interval (* 60 30))	; each hour
 (setq org-todo-keywords
 	  '((sequence "TODO(t)" "IN-PROGRESS(s!)" "EXAM" "TO-BUY(b!)"
 				  "MEETING(m!)" "|" "PENDING(p!)" "DONE(d!/@)"

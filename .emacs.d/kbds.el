@@ -1,4 +1,4 @@
-;;; keybindings.el ---- Summary: Some Useful Emacs Keybindings
+;;; kbds.el ---- Summary: Some Useful Emacs Keybindings
 ;;
 ;; Filename: keybindings.el
 ;; Description: Some Useful Emacs Keybindings
@@ -53,10 +53,10 @@
 (define-key dired-mode-map (kbd ",") 'create-etags)
 
 (global-set-key (kbd "<f12>") 'info)
-(global-set-key (kbd "C-;") 'helm-etags-select)
+;; (global-set-key (kbd "C-;") 'helm-etags-select)
 (global-set-key (kbd "C-c /") 'tags-query-replace)
 (global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c C-f") 'fzf)
+;; (global-set-key (kbd "C-c C-f") 'fzf)
 
 (global-set-key (kbd "C-c -") 'compile)
 (global-set-key (kbd "C-c =") 'recompile)
@@ -67,7 +67,6 @@
 
 (global-set-key (kbd "C-c y") 'popup-kill-ring)
 
-(global-set-key (kbd "C-c r") 'recover-this-file)
 (global-set-key (kbd "C-c m") 'man)
 
 (global-set-key (kbd "C-x g") 'magit-status)
@@ -97,7 +96,6 @@
 (global-set-key (kbd "C-c w <right>") 'wind-right)
 (global-set-key (kbd "C-c w o") 'switch-window-orientation)
 (global-set-key (kbd "C-c w s") 'swap-buffer)
-(global-set-key (kbd "C-c v") 'safe-revert-buffer)
 
 (global-set-key (kbd "S-M-<down>") 'windmove-down)
 (global-set-key (kbd "S-M-<left>") 'windmove-left)
@@ -114,15 +112,19 @@
 (global-set-key (kbd "C-c l l") 'linum-mode)
 (global-set-key (kbd "C-c l r") 'linum-relative-mode)
 
+(global-set-key (kbd "C-c @") 'calculator)
+(global-set-key (kbd "C-c $") 'calendar)
+
 (global-set-key (kbd "C-c t t") 'named-term)
 (global-set-key (kbd "C-c t b") 'named-term-below)
 
 (global-set-key (kbd "C-c b R") 'bm-remove-all-current-buffer)
 (global-set-key (kbd "C-c b t") 'bm-toggle)
 (global-set-key (kbd "C-c b p") 'bm-previous)
-(global-set-key (kbd "C-c b n") 'bm-next)
-
+(global-set-key (kbd "C-c b k") 'bm-next)
 (global-set-key (kbd "C-c b h") 'de/highlight-line)
+(global-set-key (kbd "C-c b r") 'recover-this-file)
+(global-set-key (kbd "C-c b v") 'safe-revert-buffer)
 
 (global-set-key (kbd "C-h z") 'zeal-at-point)
 

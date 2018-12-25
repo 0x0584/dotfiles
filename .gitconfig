@@ -24,6 +24,7 @@
     dca = diff --cached
  
     s = status -s
+	st = status
     co = checkout
     cob = checkout -b
 
