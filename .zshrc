@@ -28,7 +28,7 @@ ZSH_THEME="robbyrussell"
 # Visual customisation of the second prompt line
 local user_symbol="$"
 if [[ $(print -P "%#") =~ "#" ]]; then
-	user_symbol = "#"
+    user_symbol = "#"
 fi
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%{%B%F{black}%K{yellow}%} $user_symbol%{%b%f%k%F{yellow}%} %{%f%}"
 
@@ -103,9 +103,9 @@ source "$ZSHRC/functions.zsh"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#	 export EDITOR='vim'
+#    export EDITOR='vim'
 # else
-#	 export EDITOR='mvim'
+#    export EDITOR='mvim'
 # fi
 
 # Compilation flags
@@ -157,4 +157,3 @@ echo -e "                  .S!!~           of the moon            ~~!&>"
 echo -e "                  @!!~                                     ~!MN"
 echo -e "                .S!!~                                     ~~!M&>"
 echo -e "               :@SMHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!H>$N"
-

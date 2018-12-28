@@ -226,7 +226,7 @@ Ask to say the buffer if modified."
 (defun named-term (&optional name)
   "Open a terminal with NAME in the current window."
   (interactive "sName: ")
-  (ansi-term "/bin/zsh" name))
+  (ansi-term SHELL-ZSH name))
 
 (defun named-term-below ()
   "Open a terminal in a new window on the bottom."

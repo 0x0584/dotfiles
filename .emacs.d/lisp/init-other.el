@@ -55,7 +55,8 @@
   (let ((zone-programs [svg-clock-when-zone]))
 	(zone)))
 
-(zone-select-add-program 'zone-svg-clock)
+;; TODO: this needs to be fixed
+;; (zone-select-add-program 'zone-svg-clock)
 
 (define-key isearch-mode-map (kbd "<escape>") 'god-mode-isearch-activate)
 (define-key god-mode-isearch-map (kbd "<escape>") 'god-mode-isearch-disable)

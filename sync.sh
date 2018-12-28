@@ -20,7 +20,8 @@ case "$choice" in
 	y|Y )
 	# Emacs is my main programming envirenment.
 	echo "Syncing Emacs configuration.."
-	cp -TRv	 "$from/.emacs.d/lisp/" "$to/.emacs.d/lisp/"
+	cp -TRv	"$from/.emacs.d/lisp/" "$to/.emacs.d/lisp/"
+	cp -TRv	"$from/.emacs.d/fonts/" "$to/.emacs.d/fonts/"
 	cp -v "$from/.emacs.d/init.el" "$to/.emacs.d/init.el"
 	cp -v "$from/.emacs.d/pkgs.el" "$to/.emacs.d/pkgs.el"
 	cp -v "$from/.emacs.d/configs.el" "$to/.emacs.d/configs.el"

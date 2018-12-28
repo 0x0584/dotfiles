@@ -4,7 +4,7 @@
 ;; Description: Emacs Configuration
 ;; Author: Anas (0x0584)
 ;; Created: <2018-12-16 Mon 02:30:00>
-;; Updated: <2018-12-16 Sun 15:23:23>
+;; Updated: <2018-12-28 Fri 23:01:57>
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -127,6 +127,7 @@ Return a list of installed PACKAGES or nil for every skipped package."
  'emojify-logos
  'epl
  'esxml
+ 'eww-lnum
  'exwm
  'f
  'flycheck
@@ -173,6 +174,7 @@ Return a list of installed PACKAGES or nil for every skipped package."
  'helm-css-scss
  'helm-dash
  'helm-dictionary
+ 'helm-eww
  'helm-flymake
  'helm-git
  'helm-git-files
@@ -214,6 +216,7 @@ Return a list of installed PACKAGES or nil for every skipped package."
  'key-chord
  'lang-refactor-perl
  'langtool
+ 'language-detection
  'latex-preview-pane
  'latexdiff
  'less-css-mode
@@ -235,6 +238,7 @@ Return a list of installed PACKAGES or nil for every skipped package."
  'map-regexp
  'markdown-mode
  'markdown-mode+
+ 'markdown-preview-eww
  'memory-usage
  'minor-mode-hack
  'multi
@@ -277,9 +281,11 @@ Return a list of installed PACKAGES or nil for every skipped package."
  'plsense
  'plsql
  'pomidor
+ 'poporg
  'popup
  'popup-complete
  'popup-kill-ring
+ 'popup-ruler
  'popup-switcher
  'popwin
  'pos-tip
@@ -338,6 +344,7 @@ Return a list of installed PACKAGES or nil for every skipped package."
  'treepy
  'tuareg
  'undo-tree
+ 'use-ttf
  'visual-regexp
  'vkill
  'vline

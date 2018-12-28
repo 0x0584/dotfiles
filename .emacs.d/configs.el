@@ -45,10 +45,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Code:
+
 (require 'warnings)
 (require 'time-stamp)
+(require 'use-ttf)
 
-(setenv "SHELL" (expand-file-name "/bin/zsh"))
+(defvar SHELL-ZSH "/bin/zsh" "The path ro Zsh shell.")
+(defvar SHELL-BASH "/bin/bash" "The path ro Bash shell.")
+
+(setenv "SHELL" (expand-file-name SHELL-ZSH))
 
 ;; Personal Information
 (setq user-full-name "Anas Rchid"
@@ -66,13 +71,13 @@
 (setq warning-minimum-level :emergency)
 
 ;; Set backup configuration
-(setq backup-by-copying t		; don't clobber symlinks
+(setq backup-by-copying t				; don't clobber symlinks
 	  backup-directory-alist
-	  '(("." . "~/.autosaves"))		; don't litter my fs tree
+	  '(("." . "~/.autosaves"))			; don't litter my fs tree
 	  delete-old-versions t
 	  kept-new-versions 6
 	  kept-old-versions 2
-	  version-control t)		; use versioned backups
+	  version-control t)				; use versioned backups
 
 ;; Create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
@@ -80,16 +85,24 @@
 ;; Use lexical binding when evaluating Lisp
 (setq lexical-binding t)
 
-(setq time-stamp-pattern "8/Updated:[ \t]+\\\\?[\"<]+%:y-%02m-%02d %3a %02H:%02M:%02S\\\\?[\">]")
+(setq time-stamp-pattern
+	  "8/Updated:[ \t]+\\\\?[\"<]+%:y-%02m-%02d %3a %02H:%02M:%02S\\\\?[\">]")
 
-;; Better that a sound, right?
-(setq visible-bell t)
+(setq visible-bell t)					; Better that a sound, right?
 
 (setq debug-on-error t)
 
 (setq tab-width 4)
 (setq tab-stop-list (generate-tab-stops))
 (setq indent-tabs-mode nil)
+
+(setq use-ttf-default-ttf-fonts
+	  '("/.emacs.d/fonts/Inconsolata-Regular.ttf"
+		"/.emacs.d/fonts/DejaVuSansMono.ttf"))
+(setq use-ttf-default-ttf-font-name "DejaVu")
+
+(call-interactively #'use-ttf-install-fonts)
+(call-interactively #'use-ttf-set-default-font)
 
 (defalias 'wind-below 'split-current-window-below)
 (defalias 'wind-above 'split-current-window-above)

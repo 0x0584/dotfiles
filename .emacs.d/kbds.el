@@ -115,6 +115,8 @@
 (global-set-key (kbd "C-c @") 'calculator)
 (global-set-key (kbd "C-c $") 'calendar)
 
+(global-set-key (kbd "C-c r") 'popup-ruler)
+
 (global-set-key (kbd "C-c t t") 'named-term)
 (global-set-key (kbd "C-c t b") 'named-term-below)
 
