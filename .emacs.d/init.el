@@ -4,7 +4,7 @@
 ;; Description: Emacs Configuration
 ;; Author: Anas (0x0584)
 ;; Created: <2018-11-20 Mon 13:07:00>
-;; Updated: <2018-12-16 Sun 02:52:52>
+;; Updated: <2018-12-30 Sun 13:44:06>
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -54,8 +54,8 @@
 
 ;; Load packages
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
+;; Added by Package.el.	 This must come before configurations of
+;; installed packages.	Don't delete this line.	 If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
@@ -91,8 +91,11 @@
 			(require feat fname)))
 		(directory-files lisp-dir t "\\.el")))
 
-(provide 'init)
-;;; init.el ends here
+(message "end of the road")
+
 (put 'narrow-to-page 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+(provide 'init)
+;;; init.el ends here

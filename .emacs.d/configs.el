@@ -65,7 +65,7 @@
 (setq custom-file "~/.emacs.d/custom.el")
 
 ;; Using text-mode as the default mode for new buffers
-(setq major-mode 'text-mode)
+;; (setq major-mode 'text-mode)
 (setq dired-listing-switches "-aBhl -F")
 
 (setq warning-minimum-level :emergency)
@@ -96,13 +96,13 @@
 (setq tab-stop-list (generate-tab-stops))
 (setq indent-tabs-mode nil)
 
-(setq use-ttf-default-ttf-fonts
-	  '("/.emacs.d/fonts/Inconsolata-Regular.ttf"
-		"/.emacs.d/fonts/DejaVuSansMono.ttf"))
-(setq use-ttf-default-ttf-font-name "DejaVu")
+;; (setq use-ttf-default-ttf-fonts
+;;	  '("/.emacs.d/fonts/Inconsolata-Regular.ttf"
+;;		"/.emacs.d/fonts/DejaVuSansMono.ttf"))
+;; (setq use-ttf-default-ttf-font-name "DejaVu")
 
-(call-interactively #'use-ttf-install-fonts)
-(call-interactively #'use-ttf-set-default-font)
+; (call-interactively #'use-ttf-install-fonts)
+; (call-interactively #'use-ttf-set-default-font)
 
 (defalias 'wind-below 'split-current-window-below)
 (defalias 'wind-above 'split-current-window-above)

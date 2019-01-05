@@ -112,7 +112,7 @@
 (global-set-key (kbd "C-c l l") 'linum-mode)
 (global-set-key (kbd "C-c l r") 'linum-relative-mode)
 
-(global-set-key (kbd "C-c @") 'calculator)
+(global-set-key (kbd "C-c 0") 'calculator)
 (global-set-key (kbd "C-c $") 'calendar)
 
 (global-set-key (kbd "C-c r") 'popup-ruler)
@@ -177,9 +177,24 @@
 
 (global-set-key (kbd "M-C-I") 'ac-fuzzy-complete)
 
+(global-set-key (kbd "C-c o") 'switch-to-minibuffer)
+
 (global-set-key (kbd "C-c d c") 'desktop+-create)
 (global-set-key (kbd "C-c d l") 'desktop+-load)
 (global-set-key (kbd "C-c d d") 'disaster)
 (global-set-key (kbd "C-x d") 'delete-region)
+(global-set-key (kbd "C-c i") 'change-indent-tabs)
+(global-set-key (kbd "C-c w w") 'whitespace-mode)
+(global-set-key (kbd "C-c w w") 'whitespace-mode)
+
+(global-set-key (kbd "C-c q q") 'quickrun)
+(global-set-key (kbd "C-c q c") 'quickrun-compile-only)
+
+(defun goto-scratch-buffer ()
+  "Just go to *scratch* buffer."
+  (interactive)
+  (switch-to-buffer "*scratch*"))
+
+(global-set-key (kbd "C-c *") 'goto-scratch-buffer)
 
 ;;; kbds.el ends here

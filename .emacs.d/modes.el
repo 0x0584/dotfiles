@@ -4,6 +4,7 @@
 ;; Description: Emacs mode configurations
 ;; Author: Anas (0x0584)
 ;; Created: Nov 20, 2018
+;; Updated: <2019-01-02 Wed 22:35:12>
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;

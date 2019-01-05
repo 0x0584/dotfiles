@@ -27,22 +27,21 @@
 (require 'tex)
 (require 'time-stamp)
 
-(diff-hl-mode 1)
+(setq c-default-style "k&r")
+(setq c-basic-offset 4)
 
 (setq c-eldoc-includes "-I./include -I../include -I./ -I../ ")
 (setq c-eldoc-buffer-regenerate-time 60)
-(setq c-default-style "cc-mode")
 
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq TeX-save-query nil)
 (setq TeX-PDF-mode t)
 
-(setq cperl-hairy nil) ;; Turns off most of the CPerlMode options
-
 ;; (set-face-attribute 'linum nil :height 100)
 
 (defalias 'perl-mode 'cperl-mode)
+(setq cperl-hairy nil) ;; Turns off most of the CPerlMode options
 
 (defun cperl-eldoc ()
   "Return meaningful doc string for eldoc mode."
@@ -51,9 +50,9 @@
 
 (rainbow-delimiters-mode 1)
 (save-place-mode 1)
-
 (yas-global-mode 1)
 (yas-reload-all)
+(diff-hl-mode 1)
 
 ;; Hooks
 

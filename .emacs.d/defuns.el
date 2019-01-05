@@ -333,4 +333,17 @@ Version 2017-03-12"
 		 (count (/ max-column tab-width)))
 	(number-sequence tab-width (* tab-width count) tab-width)))
 
+(defun change-indent-tabs ()
+  "Move through nil and t in `indent-tabs-mode'."
+  (interactive)
+  (setq indent-tabs-mode (not indent-tabs-mode)))
+
+
+(defun switch-to-minibuffer ()
+  "Switch to minibuffer window."
+  (interactive)
+  (if (active-minibuffer-window)
+	  (select-window (active-minibuffer-window))
+	(error "Minibuffer is not active")))
+
 ;;; defuns.el ends here
