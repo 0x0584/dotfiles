@@ -4,7 +4,7 @@
 ;; Description: Emacs mode configurations
 ;; Author: Anas (0x0584)
 ;; Created: Nov 20, 2018
-;; Updated: <2019-01-02 Wed 22:35:12>
+;; Updated: <2019-02-14 Thu 04:11:54>
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -144,6 +144,8 @@ If Delete Needless Spaces mode is enable, before a buffer is saved to its file:
 
 (require 'speedbar)
 (setq speedbar-use-images nil)
+
+(hi-lock-mode)
 
 (add-hook 'find-file-hook 'delete-nl-spaces-find-file-hook)
 (add-hook 'before-save-hook 'delete-nl-spaces)

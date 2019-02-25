@@ -222,5 +222,7 @@ BEG and END default to the buffer boundaries."
 (add-hook 'org-mode-hook 'visual-line-mode)
 (add-hook 'org-mode-hook '(lambda () (org-turn-on-iimage-in-org)))
 
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+
 (provide 'init-org)
 ;;; init-org.el ends here
